@@ -139,8 +139,8 @@ def main():
     
 
     # Load cleaned data and used data
-    df_day_clean = pd.read_csv("df_day_clean.csv")
-    df_hour_clean = pd.read_csv("df_hour_clean.csv")
+    df_day_clean = pd.read_csv("Dashboard/df_day_clean.csv")
+    df_hour_clean = pd.read_csv("Dashboard/df_hour_clean.csv")
 
     # Convert 'dteday' column to datetime
     df_day_clean['dteday'] = pd.to_datetime(df_day_clean['dteday'])
