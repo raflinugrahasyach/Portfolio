@@ -37,6 +37,9 @@ def main():
     # Load cleaned data and used data
     df_day_clean = pd.read_csv("Dashboard/df_day_clean.csv")
     df_hour_clean = pd.read_csv("Dashboard/df_hour_clean.csv")
+    df_day = pd.read_csv("Dashboard/df_day.csv")
+    df_hour = pd.read_csv("Dashboard/df_hour.csv")
+    
 
     # Convert 'dteday' column to datetime
     df_day_clean['dteday'] = pd.to_datetime(df_day_clean['dteday'])
@@ -52,9 +55,7 @@ def main():
 
     df_day_cuaca = df_day_clean[['temp', 'atemp', 'hum', 'windspeed', 'cnt']].copy()
 
-    df_day = pd.read_csv("df_day.csv")
-    df_hour = pd.read_csv("df_hour.csv")
-    
+
     datetime_columns = ["dteday"]
     df_day_clean.sort_values(by="mnth", inplace=True)
     df_day_clean.reset_index(inplace=True)
