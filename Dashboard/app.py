@@ -34,36 +34,7 @@ def main():
     st.markdown("<p class='title'>Explanatory Data Analysis</p>", unsafe_allow_html=True)
     st.subheader("Bike Sharing Dataset")
 
-    # Load cleaned data and used data
-    df_day_clean = pd.read_csv("Dashboard/df_day_clean.csv")
-    df_hour_clean = pd.read_csv("Dashboard/df_hour_clean.csv")
-    df_day = pd.read_csv("Dashboard/df_day.csv")
-    df_hour = pd.read_csv("Dashboard/df_hour.csv")
     
-
-    # Convert 'dteday' column to datetime
-    df_day_clean['dteday'] = pd.to_datetime(df_day_clean['dteday'])
-    df_hour_clean['dteday'] = pd.to_datetime(df_hour_clean['dteday'])
-
-    # Sort dataframes by 'dteday'
-    df_day_clean.sort_values(by="dteday", inplace=True)
-    df_hour_clean.sort_values(by="dteday", inplace=True)
-
-    # Reset index
-    df_day_clean.reset_index(inplace=True, drop=True)
-    df_hour_clean.reset_index(inplace=True, drop=True)
-
-    df_day_cuaca = df_day_clean[['temp', 'atemp', 'hum', 'windspeed', 'cnt']].copy()
-
-
-    datetime_columns = ["dteday"]
-    df_day_clean.sort_values(by="mnth", inplace=True)
-    df_day_clean.reset_index(inplace=True)
-
-    df_hour_clean.sort_values(by="mnth", inplace=True)
-    df_hour_clean.reset_index(inplace=True)
-
-
     def create_df_hour_book(df):
         df_hour_book = df_hour_clean.copy().groupby(['yr', 'hr']).apply(lambda x: pd.Series({
             'User Terdaftar': x['registered'].sum(),
@@ -166,7 +137,36 @@ def main():
 
         # Menghitung matriks korelasi
         return df_cuaca_corr
+    # Load cleaned data and used data
+    df_day_clean = pd.read_csv("Dashboard/df_day_clean.csv")
+    df_hour_clean = pd.read_csv("Dashboard/df_hour_clean.csv")
+    df_day = pd.read_csv("Dashboard/df_day.csv")
+    df_hour = pd.read_csv("Dashboard/df_hour.csv")
     
+
+    # Convert 'dteday' column to datetime
+    df_day_clean['dteday'] = pd.to_datetime(df_day_clean['dteday'])
+    df_hour_clean['dteday'] = pd.to_datetime(df_hour_clean['dteday'])
+
+    # Sort dataframes by 'dteday'
+    df_day_clean.sort_values(by="dteday", inplace=True)
+    df_hour_clean.sort_values(by="dteday", inplace=True)
+
+    # Reset index
+    df_day_clean.reset_index(inplace=True, drop=True)
+    df_hour_clean.reset_index(inplace=True, drop=True)
+
+    df_day_cuaca = df_day_clean[['temp', 'atemp', 'hum', 'windspeed', 'cnt']].copy()
+
+
+    datetime_columns = ["dteday"]
+    df_day_clean.sort_values(by="mnth", inplace=True)
+    df_day_clean.reset_index(inplace=True)
+
+    df_hour_clean.sort_values(by="mnth", inplace=True)
+    df_hour_clean.reset_index(inplace=True)
+
+
 
     
     for column in datetime_columns:
