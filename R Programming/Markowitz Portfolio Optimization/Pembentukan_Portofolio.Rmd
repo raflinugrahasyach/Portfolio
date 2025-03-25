@@ -1,0 +1,239 @@
+---
+title: "draf pembentukan porto"
+author: "X"
+date: "2025-01-10"
+output: pdf_document
+---
+
+```{r}
+# Library yang diperlukan
+library(quantmod)
+library(igraph)
+library(PerformanceAnalytics)
+library(quadprog)
+library(xts)
+library(corrplot)
+library(reshape2)
+library(Matrix)
+```
+
+## 1. Mengumpulkan data (training) harga saham LQ45 
+```{r}
+get_stock_data <- function(symbols, start_date, end_date) {
+  stock_data <- list()
+  for (symbol in symbols) {
+    tryCatch({
+      stock <- na.omit(Cl(getSymbols(symbol, src = "yahoo", from = start_date, to = end_date, auto.assign = FALSE)))
+      if (nrow(stock) > 0) {
+        stock_data[[symbol]] <- stock
+      }
+    }, error = function(e) {
+      cat("Error fetching data for", symbol, "\n")
+    })
+  }
+  return(stock_data)
+}
+
+# saham yang konsisten berada di indeks LQ45 selama periode pengamatan ditulis manual, gak tau ada kode langsungnya atau enggak 
+symbols <- c("ADRO.JK", "AMRT.JK", "ANTM.JK", "ARTO.JK", "ASII.JK", 
+             "BBCA.JK", "BBNI.JK", "BBRI.JK", "BBTN.JK", "BMRI.JK", 
+             "BRIS.JK", "BRPT.JK", "BUKA.JK", "CPIN.JK", "EXCL.JK", 
+             "GOTO.JK", "ICBP.JK", "INCO.JK", "INDF.JK", "INKP.JK", 
+             "INTP.JK", "ITMG.JK", "KLBF.JK", "MDKA.JK", "MEDC.JK", 
+             "PGAS.JK", "PTBA.JK", "SMGR.JK", "TLKM.JK", "TOWR.JK", 
+             "UNTR.JK", "UNVR.JK")
+
+start_date <- "2022-10-01"
+end_date <- "2024-10-31"
+stock_data <- get_stock_data(symbols, start_date, end_date)
+```
+
+## 2. Menghitung return saham mingguan
+```{r}
+# karena return saham yang akan digunakan adalah mingguan yang lebih stabil dari return harian maka return harian diubah jadi mingguan
+calc_weekly_return <- function(stock_data) {
+  weekly_returns <- list()
+  for (symbol in names(stock_data)) {
+    weekly_returns[[symbol]] <- weeklyReturn(stock_data[[symbol]])
+  }
+  return(weekly_returns)
+}
+
+weekly_returns <- calc_weekly_return(stock_data)
+returns_combined <- do.call(merge, weekly_returns)
+colnames(returns_combined) <- names(weekly_returns)
+returns_combined <- na.omit(returns_combined)
+```
+
+## 3. Menghitung matriks korelasi antar saham
+```{r}
+split_date <- as.Date("2024-07-01")
+returns_training <- returns_combined[index(returns_combined) < split_date]
+returns_testing <- returns_combined[index(returns_combined) >= split_date]
+
+cor_matrix <- cor(returns_training, use = "pairwise.complete.obs")
+cor_matrix[is.na(cor_matrix)] <- 0
+
+# visualisasi korelasi setelah perhitungan korelasi
+corrplot(cor_matrix, method = "color", type = "upper", 
+         col = colorRampPalette(c("red", "white", "blue"))(200),
+         tl.cex = 0.5, tl.col = "black", cl.cex = 0.5)
+```
+
+## 4. Mengonversi matriks korelasi menjadi jarak Gower
+```{r}
+#jarak gower ini dibutuhkan untuk membangun graf
+weights <- sqrt((1 - cor_matrix) / 2) 
+weights[weights < 0] <- 0  
+weights
+```
+
+## 5. Membangun graf berdasarkan jarak Gower
+```{r}
+graph <- graph_from_adjacency_matrix(weights, mode = "undirected", weighted = TRUE)
+
+plot(graph, vertex.label.cex = 0.5, edge.width = E(graph)$weight * 0.1, main = "Graf Hubungan Antar Saham Berdasarkan Jarak Gower")
+```
+
+## 6. Menerapkan Minimun Spanning Tree (MST)
+```{r}
+mst <- mst(graph, weights = E(graph)$weight)
+
+# visualisasi graf MST
+plot(mst, 
+     layout = layout_with_fr(mst), 
+     vertex.size = 8,
+     vertex.label.cex = 0.7,
+     edge.width = E(mst)$weight * 2,
+     main = "Minimum Spanning Tree (Layout Fruchterman-Reingold)")
+
+```
+
+## 7. Menerapkan Maximum Independent Set (MIS)
+```{r}
+# graf mst selanjutnya di terapkan mis
+calculate_MIS <- function(graph) {
+  independent_set <- c()
+  nodes <- V(graph)
+  while(length(nodes) > 0) {
+    node <- nodes[1]
+    independent_set <- c(independent_set, node)
+    nodes <- setdiff(nodes, neighbors(graph, node))
+    nodes <- setdiff(nodes, node)
+  }
+  return(independent_set)
+}
+
+mis <- calculate_MIS(mst)
+mis_stocks <- names(V(mst))[mis]  
+
+# visualisasi MST dengan node MIS diberi warna kuning dan diberi label
+V(mst)$color <- ifelse(names(V(mst)) %in% mis_stocks, "yellow", "gray")
+V(mst)$label <- ifelse(names(V(mst)) %in% mis_stocks, names(V(mst)), NA)
+
+# visualisasi
+plot(mst, 
+     vertex.color = V(mst)$color, 
+     vertex.label = V(mst)$label, 
+     vertex.label.cex = 0.5,  
+     edge.width = 1.5, 
+     main = "MST dengan MIS", 
+     layout = layout_with_kk)
+```
+
+## 8. Memaksimalkan Sharpe Ratio untuk Pembobotan Portofolio
+```{r}
+# REVISI 1: Konversi risk-free rate yang benar (simple rate)
+risk_free_annual <- 0.06
+risk_free_weekly <- (1 + risk_free_annual)^(1/52) - 1  # Compound rate
+
+# REVISI 2: Matriks kovariansi tanpa skala 2x
+cov_matrix <- cov(returns_training)
+cov_matrix <- nearPD(cov_matrix)$mat  # Pastikan positif definit
+
+# REVISI 4: Setup kendala non-negatif dan sum(w)=1
+n_assets <- ncol(returns_training)
+Dmat <- cov_matrix
+dvec <- colMeans(returns_training) - risk_free_weekly
+
+# REVISI 5: Formula optimasi sesuai Markowitz
+Amat <- cbind(rep(1, n_assets), diag(n_assets))
+bvec <- c(1, rep(0, n_assets))
+
+# Optimasi
+result <- solve.QP(Dmat, dvec, Amat, bvec, meq = 1)
+
+# Ekstrak bobot
+optimal_weights <- result$solution
+optimal_weights <- pmax(optimal_weights, 0)
+optimal_weights <- optimal_weights/sum(optimal_weights)
+
+# REVISI 6: Annualisasi yang konsisten
+port_return_annual <- log(1 + sum(optimal_weights * colMeans(returns_combined))) * 52
+port_risk_annual <- sqrt(t(optimal_weights) %*% cov_matrix %*% optimal_weights) * sqrt(52)
+sharpe_ratio_annual <- (exp(port_return_annual) - 1 - risk_free_annual) / port_risk_annual
+
+# Output
+print(data.frame(
+  Symbol = colnames(returns_combined),
+  Weight = round(optimal_weights, 4)
+))
+print(paste("Sharpe Ratio Annualized:", round(sharpe_ratio_annual, 2)))
+```
+
+## 9. Uji performa portofolio MST-MIS menggunakan data testing dan membandingkannya dengan Markowitz
+```{r}
+if(nrow(returns_testing) > 0) {
+  # MST-MIS (Equal Weight)
+  mst_returns <- rowMeans(returns_testing[, mis_stocks])
+  
+  # Markowitz
+  markowitz_returns <- as.matrix(returns_testing) %*% optimal_weights
+  
+  # Annualisasi
+  annualize <- function(returns) {
+    log_returns <- log(1 + returns)
+    exp(52 * mean(log_returns)) - 1
+  }
+  
+  mst_annual <- annualize(mst_returns)
+  markowitz_annual <- annualize(markowitz_returns)
+  
+  # Risk dan Sharpe Ratio
+  risk_mst <- sd(mst_returns) * sqrt(52)
+  risk_markowitz <- sd(markowitz_returns) * sqrt(52)
+  
+  sharpe_mst <- (mst_annual - risk_free_annual)/risk_mst
+  sharpe_markowitz <- (markowitz_annual - risk_free_annual)/risk_markowitz
+  
+  # Tampilkan Hasil
+  comparison <- data.frame(
+    Metric = c("Return Tahunan", "Risiko Tahunan", "Sharpe Ratio"),
+    MST_MIS = c(mst_annual, risk_mst, sharpe_mst),
+    Markowitz = c(markowitz_annual, risk_markowitz, sharpe_markowitz)
+  )
+  
+  print(comparison)
+} else {
+  print("Tidak ada data testing yang tersedia")
+}
+```
+
+## 10. Visualisasi hasil
+```{r}
+markowitz_returns_xts_test <- xts(markowitz_returns, order.by = index(returns_testing))
+mst_returns_xts_test <- xts(mst_returns, order.by = index(returns_testing))
+
+# Hitung return kumulatif
+markowitz_cum_test <- cumprod(1 + na.omit(markowitz_returns_xts_test))
+mst_cum_test <- cumprod(1 + na.omit(mst_returns_xts_test))
+
+# Visualisasi hasil
+plot.zoo(cbind(markowitz_cum_test, mst_cum_test), col = c("blue", "red"), lwd = 2, 
+         main = "Perbandingan Return Kumulatif Portofolio (Data Testing)", 
+         ylab = "Return Kumulatif", xlab = "Waktu")
+grid()
+legend("topleft", legend = c("Markowitz", "MST + MIS"), col = c("blue", "red"), lwd = 2)
+
+```
+
