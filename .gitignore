@@ -1,0 +1,45 @@
+# Archives
+*.zip
+*.rar
+*.7z
+
+# Backups
+DRAFT_BACKUP*
+*.bak
+*.swp
+
+# Cache & Environments
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+.env
+venv/
+env/
+.venv/
+
+# Logs
+*.log
+*.tmp
+
+# Web Development Build Caches
+.next/
+node_modules/
+build/
+dist/
+
+# Large datasets and CSV files (>5MB)
+*.csv
+*.geojson
+
+# Heavy model weights and artifacts
+*.safetensors
+*.pkl
+*.joblib
+*.h5
+*.weights
+*.bin
+
+# Large image assets in projects
+*.jpg
+*.jpeg

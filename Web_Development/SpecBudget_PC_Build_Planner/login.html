@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to your SpecBudget account to access the PC build calculator.">
+  <title>Login – SpecBudget</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Spec<span>Budget</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="login.html" class="active">Login</a>
+      <a href="register.html" class="btn-nav">Register</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="auth-page">
+    <div class="auth-card">
+
+      <a href="index.html" class="auth-logo-link">
+        <span class="auth-logo">Spec<span>Budget</span></span>
+      </a>
+
+      <h1 class="auth-heading">Welcome Back</h1>
+      <p class="auth-sub">Sign in to continue building your perfect PC.</p>
+
+      <!-- Flash area -->
+      <div class="flash-msg" id="flashMsg" role="alert"></div>
+
+      <form id="loginForm" novalidate>
+
+        <div class="form-group">
+          <label for="loginEmail">Email Address</label>
+          <input
+            type="email"
+            id="loginEmail"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+          >
+          <span class="field-error" id="loginEmailErr"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPass">Password</label>
+          <input
+            type="password"
+            id="loginPass"
+            name="password"
+            placeholder="Your password"
+            autocomplete="current-password"
+          >
+          <span class="field-error" id="loginPassErr"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+          Sign In →
+        </button>
+
+      </form>
+
+      <p class="auth-alt" style="margin-top:16px;">
+        Don't have an account? <a href="register.html">Register here</a>
+      </p>
+
+    </div>
+  </main>
+
+  <script>
+    // -- regex patterns --
+    var emailPattern = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/
+    var passPattern  = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/
+
+    // show / clear field error
+    function showErr(fieldId, msg) {
+      var s = document.getElementById(fieldId + 'Err')
+      var f = document.getElementById(fieldId)
+      if (s) s.textContent = msg
+      if (f) f.classList.add('input-invalid')
+    }
+
+    function clearErr(fieldId) {
+      var s = document.getElementById(fieldId + 'Err')
+      var f = document.getElementById(fieldId)
+      if (s) s.textContent = ''
+      if (f) f.classList.remove('input-invalid')
+    }
+
+    function checkEmail(val) {
+      if (!val.trim()) return 'Email is required.'
+      if (!emailPattern.test(val)) return 'Please enter a valid email address.'
+      return ''
+    }
+
+    // validate login form fields
+    function validateLoginForm(data) {
+      var ok = true
+      var emailMsg = checkEmail(data.email)
+      if (emailMsg) { showErr('loginEmail', emailMsg); ok = false } else clearErr('loginEmail')
+      if (!data.password) { showErr('loginPass', 'Password is required.'); ok = false } else clearErr('loginPass')
+      return ok
+    }
+
+    // clear border as user types
+    function attachLiveValidation() {
+      ['loginEmail', 'loginPass'].forEach(function(id) {
+        var el = document.getElementById(id)
+        if (!el) return
+        el.addEventListener('input', function() {
+          el.classList.remove('input-invalid')
+          var s = document.getElementById(id + 'Err')
+          if (s) s.textContent = ''
+        })
+      })
+    }
+
+    // -- auth helpers --
+    var USERS_KEY   = 'specbudget_users'
+    var SESSION_KEY = 'specbudget_session'
+
+    function getStoredUsers() {
+      try { return JSON.parse(localStorage.getItem(USERS_KEY)) || [] }
+      catch(e) { return [] }
+    }
+
+    function getCurrentUser() {
+      try { return JSON.parse(sessionStorage.getItem(SESSION_KEY)) || null }
+      catch(e) { return null }
+    }
+
+    function showFlash(el, msg, type) {
+      if (!el) return
+      el.textContent = msg
+      el.className = 'flash-msg show ' + type
+    }
+
+    // -- page init --
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open')
+    })
+
+    // already logged in? skip to calculator
+    if (getCurrentUser()) {
+      window.location.href = 'calculate.html'
+    }
+
+    attachLiveValidation()
+
+    var loginForm = document.getElementById('loginForm')
+    var flashMsg  = document.getElementById('flashMsg')
+
+    loginForm.addEventListener('submit', function(evt) {
+      evt.preventDefault()
+      var data = {
+        email:    document.getElementById('loginEmail').value.trim(),
+        password: document.getElementById('loginPass').value
+      }
+      if (!validateLoginForm(data)) return
+
+      // look up user in storage
+      var users = getStoredUsers()
+      var match = null
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].email.toLowerCase() === data.email.toLowerCase() && users[i].password === data.password) {
+          match = users[i]; break
+        }
+      }
+
+      if (!match) {
+        showFlash(flashMsg, 'Incorrect email or password. Please try again.', 'error')
+        showErr('loginEmail', 'Invalid credentials.')
+        return
+      }
+
+      // save session (no password)
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+        id: match.id, email: match.email, fullName: match.fullName
+      }))
+      showFlash(flashMsg, 'Login successful! Taking you to the calculator...', 'success')
+      setTimeout(function() { window.location.href = 'calculate.html' }, 1200)
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+{% extends "base.html" %}
+
+{% block title %}Monitoring Real-Time - IoT Fruit Sorting System{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+        margin-bottom: 32px;
+    }
+
+    .page-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #2c3e50;
+        letter-spacing: -0.5px;
+    }
+
+    /* ===== STATS GRID ===== */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-bottom: 36px;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 32px 24px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* CRITICAL: Border Top dengan Warna Berbeda */
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: currentColor;
+    }
+
+    .stat-card.tomat-masak {
+        color: #ef5350;
+    }
+
+    .stat-card.tomat-mentah {
+        color: #66bb6a;
+    }
+
+    .stat-card.apel-sedang {
+        color: #ffa726;
+    }
+
+    .stat-card.apel-besar {
+        color: #42a5f5;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .stat-label {
+        font-size: 12px;
+        color: #6c757d;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+    }
+
+    .stat-value {
+        font-size: 56px;
+        font-weight: 800;
+        color: #2c3e50;
+        line-height: 1;
+        letter-spacing: -2px;
+    }
+
+    /* ===== TABLE SECTION ===== */
+    .table-section {
+        margin-bottom: 32px;
+    }
+
+    .table-header {
+        background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px 12px 0 0;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .table-header::before {
+        content: '📋';
+        font-size: 20px;
+    }
+
+    .table-container {
+        background: white;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .data-table thead {
+        background: #f8f9fa;
+    }
+
+    .data-table th {
+        padding: 16px 20px;
+        text-align: center;
+        font-weight: 700;
+        color: #495057;
+        border-bottom: 2px solid #e9ecef;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+    }
+
+    .data-table td {
+        padding: 16px 20px;
+        text-align: center;
+        border-bottom: 1px solid #e9ecef;
+        font-size: 14px;
+        color: #495057;
+    }
+
+    .data-table tbody tr {
+        transition: all 0.2s ease;
+    }
+
+    .data-table tbody tr:hover {
+        background: #f8f9fa;
+    }
+
+    .data-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .empty-state-icon {
+        font-size: 72px;
+        margin-bottom: 16px;
+        opacity: 0.3;
+    }
+
+    .empty-state-text {
+        font-size: 15px;
+        color: #a0aec0;
+        font-weight: 500;
+    }
+
+    /* ===== IMAGE CELL ===== */
+    .image-cell img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 2px solid #e9ecef;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .stat-card {
+        animation: fadeInUp 0.5s ease-out backwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.05s; }
+    .stat-card:nth-child(2) { animation-delay: 0.1s; }
+    .stat-card:nth-child(3) { animation-delay: 0.15s; }
+    .stat-card:nth-child(4) { animation-delay: 0.2s; }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.7;
+        }
+    }
+
+    .stat-value.updating {
+        animation: pulse 0.5s ease-in-out;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1200px) {
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stat-value {
+            font-size: 48px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Monitoring Real-Time</h1>
+</div>
+
+<!-- STATS CARDS -->
+<div class="stats-grid">
+    <div class="stat-card tomat-masak">
+        <div class="stat-label">Tomat Masak</div>
+        <div class="stat-value" id="count-tomat-masak">{{ counts.tomat_masak }}</div>
+    </div>
+    
+    <div class="stat-card tomat-mentah">
+        <div class="stat-label">Tomat Mentah</div>
+        <div class="stat-value" id="count-tomat-mentah">{{ counts.tomat_mentah }}</div>
+    </div>
+    
+    <div class="stat-card apel-sedang">
+        <div class="stat-label">Apel Sedang</div>
+        <div class="stat-value" id="count-apel-sedang">{{ counts.apel_sedang }}</div>
+    </div>
+    
+    <div class="stat-card apel-besar">
+        <div class="stat-label">Apel Besar</div>
+        <div class="stat-value" id="count-apel-besar">{{ counts.apel_besar }}</div>
+    </div>
+</div>
+
+<!-- TABEL BUAH TOMAT -->
+<div class="table-section">
+    <div class="table-header">TABEL BUAH TOMAT</div>
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width: 70px;">No</th>
+                    <th style="width: 150px;">Tanggal</th>
+                    <th>Tomat Mentah</th>
+                    <th>Tomat Masak</th>
+                    <th>Total Buah</th>
+                    <th style="width: 120px;">Gambar</th>
+                </tr>
+            </thead>
+            <tbody id="tomatTableBody">
+                {% if recent_tomat and recent_tomat|length > 0 %}
+                    {% for entry in recent_tomat[:10] %}
+                    <tr>
+                        <td style="font-weight: 600;">{{ loop.index }}</td>
+                        <td>{{ entry.date }}</td>
+                        <td>{{ entry.count if 'mentah' in entry.type else '-' }}</td>
+                        <td>{{ entry.count if 'masak' in entry.type else '-' }}</td>
+                        <td style="font-weight: 600;">{{ entry.count }}</td>
+                        <td class="image-cell">
+                            {% if entry.image %}
+                            <img src="{{ entry.image }}" alt="Tomat" loading="lazy">
+                            {% else %}
+                            -
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="6" class="empty-state">
+                        <div class="empty-state-icon">📦</div>
+                        <div class="empty-state-text">Belum ada data yang tercatat</div>
+                    </td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- TABEL BUAH APEL -->
+<div class="table-section">
+    <div class="table-header">TABEL BUAH APEL</div>
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width: 70px;">No</th>
+                    <th style="width: 150px;">Tanggal</th>
+                    <th>Apel Sedang</th>
+                    <th>Apel Besar</th>
+                    <th>Total Buah</th>
+                    <th style="width: 120px;">Gambar</th>
+                </tr>
+            </thead>
+            <tbody id="apelTableBody">
+                {% if recent_apel and recent_apel|length > 0 %}
+                    {% for entry in recent_apel[:10] %}
+                    <tr>
+                        <td style="font-weight: 600;">{{ loop.index }}</td>
+                        <td>{{ entry.date }}</td>
+                        <td>{{ entry.count if 'sedang' in entry.type else '-' }}</td>
+                        <td>{{ entry.count if 'besar' in entry.type else '-' }}</td>
+                        <td style="font-weight: 600;">{{ entry.count }}</td>
+                        <td class="image-cell">
+                            {% if entry.image %}
+                            <img src="{{ entry.image }}" alt="Apel" loading="lazy">
+                            {% else %}
+                            -
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="6" class="empty-state">
+                        <div class="empty-state-icon">📦</div>
+                        <div class="empty-state-text">Belum ada data yang tercatat</div>
+                    </td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // ===== AUTO-REFRESH MONITORING DATA =====
+    let refreshInterval;
+    let isRefreshing = false;
+
+    function refreshMonitoring() {
+        if (isRefreshing) return;
+        
+        isRefreshing = true;
+        
+        $.ajax({
+            url: '/monitoring',
+            method: 'GET',
+            dataType: 'html',
+            success: function(html) {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // Update stat cards with animation
+                const stats = [
+                    'tomat-masak',
+                    'tomat-mentah',
+                    'apel-sedang',
+                    'apel-besar'
+                ];
+                
+                stats.forEach(stat => {
+                    const newValue = doc.getElementById('count-' + stat)?.textContent || '0';
+                    const element = document.getElementById('count-' + stat);
+                    
+                    if (element && element.textContent !== newValue) {
+                        // Add updating animation
+                        element.classList.add('updating');
+                        
+                        // Update value after short delay
+                        setTimeout(() => {
+                            element.textContent = newValue;
+                            element.classList.remove('updating');
+                        }, 250);
+                    }
+                });
+                
+                isRefreshing = false;
+            },
+            error: function(xhr, status, error) {
+                console.error('Refresh error:', error);
+                isRefreshing = false;
+            }
+        });
+    }
+
+    // Start auto-refresh every 3 seconds
+    refreshInterval = setInterval(refreshMonitoring, 3000);
+
+    // Clear interval when leaving page
+    window.addEventListener('beforeunload', function() {
+        if (refreshInterval) {
+            clearInterval(refreshInterval);
+        }
+    });
+
+    // ===== MANUAL REFRESH BUTTON (Optional) =====
+    function manualRefresh() {
+        refreshMonitoring();
+        
+        // Visual feedback
+        const statCards = document.querySelectorAll('.stat-card');
+        statCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.animation = 'none';
+                setTimeout(() => {
+                    card.style.animation = '';
+                }, 10);
+            }, index * 50);
+        });
+    }
+
+    // ===== INITIAL LOAD ANIMATION =====
+    document.addEventListener('DOMContentLoaded', function() {
+        const statCards = document.querySelectorAll('.stat-card');
+        statCards.forEach((card, index) => {
+            card.style.animationDelay = (index * 0.05) + 's';
+        });
+    });
+
+    // ===== TOOLTIP FOR STATS (Optional Enhancement) =====
+    document.querySelectorAll('.stat-card').forEach(card => {
+        card.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+</script>
+{% endblock %}

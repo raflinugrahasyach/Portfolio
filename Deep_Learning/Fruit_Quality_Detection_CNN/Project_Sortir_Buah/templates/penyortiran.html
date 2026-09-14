@@ -1,0 +1,917 @@
+{% extends "base.html" %}
+{% block title %}Penyortiran - IoT Fruit Sorting System{% endblock %}
+{% block extra_css %}
+<style>
+    /* ===== TAB NAVIGATION ===== */
+    .tab-navigation {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 36px;
+    }
+    .tab-btn {
+        padding: 13px 40px;
+        border: 2px solid #6a1b9a;
+        background: transparent;
+        color: #6a1b9a;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+        letter-spacing: 0.3px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .tab-btn.active {
+        background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 4px 16px rgba(106, 27, 154, 0.3);
+    }
+    .tab-btn:hover:not(.active) {
+        background: rgba(106, 27, 154, 0.08);
+        transform: translateY(-2px);
+    }
+    /* ===== MAIN LAYOUT ===== */
+    .penyortiran-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 28px;
+    }
+    /* ===== LEFT PANEL - FEED DETECTION ===== */
+    .feed-panel {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .panel-header {
+        background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+        color: white;
+        padding: 14px 20px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        letter-spacing: 0.3px;
+    }
+    .panel-header::before {
+        content: '📹';
+        font-size: 22px;
+    }
+    .feed-container {
+        background: #000;
+        border-radius: 10px;
+        height: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        margin-bottom: 24px;
+        position: relative;
+        overflow: hidden;
+    }
+    .feed-placeholder {
+        text-align: center;
+        z-index: 1;
+    }
+    .feed-icon {
+        font-size: 72px;
+        margin-bottom: 16px;
+        opacity: 0.4;
+        animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+    .feed-text {
+        font-size: 14px;
+        opacity: 0.6;
+        font-weight: 400;
+    }
+    /* ===== SCAN FLASH OVERLAY ===== */
+    #scanFlash {
+        position: absolute;
+        inset: 0;
+        background: white;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 20;
+        transition: opacity 0.05s;
+        border-radius: 10px;
+    }
+    /* ===== SCANNING SPINNER OVERLAY ===== */
+    #scanOverlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        z-index: 15;
+        border-radius: 10px;
+    }
+    #scanOverlay.active { display: flex; }
+    .scan-spin {
+        width: 56px;
+        height: 56px;
+        border: 5px solid rgba(255, 255, 255, 0.2);
+        border-top-color: #ce93d8;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .scan-spin-text {
+        color: white;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    /* ===== INSTRUCTIONS BOX ===== */
+    .instructions-box {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-left: 5px solid #6a1b9a;
+        padding: 20px 24px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    .instructions-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 16px;
+        font-size: 15px;
+    }
+    .instructions-title::before {
+        content: 'ℹ️';
+        font-size: 20px;
+    }
+    .instruction-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .instruction-list li {
+        padding: 10px 0;
+        padding-left: 32px;
+        position: relative;
+        color: #495057;
+        font-size: 13px;
+        line-height: 1.6;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .instruction-list li:last-child { border-bottom: none; }
+    .instruction-list li::before {
+        content: attr(data-number);
+        position: absolute;
+        left: 0;
+        width: 24px;
+        height: 24px;
+        background: #6a1b9a;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 11px;
+    }
+    /* ===== RIGHT PANEL - CONTROL ===== */
+    .control-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .control-card {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .control-header {
+        background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+        color: white;
+        padding: 14px 20px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        letter-spacing: 0.3px;
+    }
+    .control-header::before {
+        content: '🎛️';
+        font-size: 22px;
+    }
+    /* ===== STATUS INDICATOR ===== */
+    .status-box {
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        font-size: 14px;
+        color: #495057;
+    }
+    .status-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 12px;
+        animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    .status-dot.active {
+        background: #2ecc71;
+        box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+    }
+    .status-dot.inactive { background: #e74c3c; }
+    .status-dot.scanning {
+        background: #9c27b0;
+        box-shadow: 0 0 10px rgba(156, 39, 176, 0.6);
+    }
+    /* ===== CONTROL BUTTONS ===== */
+    .control-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .control-btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        letter-spacing: 0.3px;
+    }
+    .control-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    /* TOMBOL SCAN UTAMA — ungu mencolok */
+    .btn-scan {
+        background: linear-gradient(135deg, #6a1b9a 0%, #9c27b0 50%, #ab47bc 100%);
+        color: white;
+        font-size: 15px;
+        padding: 17px 15px;
+        box-shadow: 0 6px 20px rgba(106, 27, 154, 0.4);
+    }
+    .btn-scan:hover:not(:disabled) {
+        background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(106, 27, 154, 0.55);
+    }
+    .btn-scan:active:not(:disabled) { transform: translateY(0); }
+    .btn-stop {
+        background: #e74c3c;
+        color: white;
+    }
+    .btn-stop:hover:not(:disabled) {
+        background: #c0392b;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+    }
+    .btn-reset {
+        background: #607d8b;
+        color: white;
+    }
+    .btn-reset:hover:not(:disabled) {
+        background: #546e7a;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(96, 125, 139, 0.4);
+    }
+    /* ===== SCAN RESULT BOX (menggantikan cooldown, posisi sama) ===== */
+    .scan-result-box {
+        display: none;
+        border-radius: 8px;
+        padding: 14px 16px;
+        margin-top: 12px;
+        text-align: center;
+    }
+    .scan-result-box.show { display: block; }
+    .scan-result-box.success {
+        background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+        border: 2px solid #81c784;
+    }
+    .scan-result-box.error {
+        background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+        border: 2px solid #f48fb1;
+    }
+    .sres-title {
+        font-weight: 800;
+        font-size: 14px;
+        letter-spacing: 0.8px;
+        margin-bottom: 4px;
+    }
+    .sres-title.ok  { color: #2e7d32; animation: ftxt 0.5s ease-in-out infinite alternate; }
+    .sres-title.err { color: #c62828; }
+    .sres-msg { font-size: 12px; font-weight: 600; }
+    .sres-msg.ok  { color: #388e3c; }
+    .sres-msg.err { color: #ad1457; }
+    @keyframes ftxt { from { opacity: 1; } to { opacity: 0.3; } }
+    /* ===== DETECTION BOX (GREEN) ===== */
+    .detection-box {
+        background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+        color: white;
+        padding: 24px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 16px rgba(46, 204, 113, 0.3);
+        animation: fadeInUp 0.5s ease-out;
+    }
+    .detection-box.not-found {
+        background: linear-gradient(135deg, #e53935 0%, #b71c1c 100%);
+        box-shadow: 0 4px 16px rgba(229, 57, 53, 0.3);
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    .detection-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        opacity: 0.95;
+        letter-spacing: 0.5px;
+    }
+    .detection-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .detection-item {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 14px;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+    }
+    .detection-label {
+        font-size: 11px;
+        opacity: 0.9;
+        margin-bottom: 6px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+    }
+    .detection-value {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+    }
+    .detection-item.full-width { grid-column: 1 / -1; }
+    .color-preview {
+        width: 100%;
+        height: 32px;
+        border-radius: 6px;
+        margin-top: 8px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    /* ===== STATS CARD - FORMULIR STYLE ===== */
+    .stats-card {
+        background: white;
+        border-radius: 12px;
+        padding: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+    .stats-header {
+        background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+        color: white;
+        padding: 14px 20px;
+        font-weight: 700;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        letter-spacing: 0.3px;
+    }
+    .stats-header::before {
+        content: '📊';
+        font-size: 22px;
+    }
+    .stats-body { padding: 0; }
+    .stat-row {
+        display: flex;
+        border-bottom: 2px solid #e9ecef;
+        transition: all 0.2s ease;
+    }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-row:hover { background: #f8f9fa; }
+    .stat-label-col {
+        flex: 1;
+        padding: 18px 24px;
+        font-weight: 600;
+        color: #495057;
+        font-size: 13px;
+        letter-spacing: 0.3px;
+        border-right: 2px solid #e9ecef;
+        display: flex;
+        align-items: center;
+    }
+    .stat-value-col {
+        flex: 1;
+        padding: 18px 24px;
+        font-weight: 700;
+        color: #6a1b9a;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+    .stat-value-col.hl { animation: hlrow 0.6s ease-out; }
+    @keyframes hlrow {
+        0%   { background: #f3e5f5; color: #4a148c; }
+        100% { background: transparent; color: #6a1b9a; }
+    }
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1200px) {
+        .penyortiran-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+        .detection-grid { grid-template-columns: 1fr; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- TAB NAVIGATION -->
+<div class="tab-navigation">
+    <button class="tab-btn" onclick="location.href='/pengenalan'">
+        <span>📸</span> Pengenalan
+    </button>
+    <button class="tab-btn active" onclick="location.href='/penyortiran'">
+        <span>💡</span> Penyortiran
+    </button>
+</div>
+
+<!-- MAIN GRID -->
+<div class="penyortiran-grid">
+
+    <!-- ===== LEFT PANEL - FEED ===== -->
+    <div class="feed-panel">
+        <div class="panel-header">Feed Deteksi Real-time</div>
+
+        <!-- Feed Container: selalu tampil kamera (video_feed streaming) -->
+        <div class="feed-container" id="feedContainer">
+            <!-- Video stream selalu aktif -->
+            <img id="videoFeed"
+                 src="/video_feed/sorting"
+                 style="width:100%;height:100%;object-fit:cover;border-radius:10px;"
+                 alt="Live Feed"
+                 onerror="onVideoErr()">
+            <!-- Flash putih saat scan diklik -->
+            <div id="scanFlash"></div>
+            <!-- Spinner overlay saat AI bekerja -->
+            <div id="scanOverlay">
+                <div class="scan-spin"></div>
+                <div class="scan-spin-text">SCANNING...</div>
+            </div>
+        </div>
+
+        <!-- Instruksi v4 Manual Trigger -->
+        <div class="instructions-box">
+            <div class="instructions-title">Petunjuk Mode Penyortiran (v4 Manual Trigger)</div>
+            <ul class="instruction-list">
+                <li data-number="1">Kamera aktif otomatis — kotak <strong>ungu di tengah</strong> adalah Area ROI</li>
+                <li data-number="2">Posisikan buah tepat di dalam kotak ROI ({{ roi_size }}×{{ roi_size }}px), latar belakang <strong>gelap</strong></li>
+                <li data-number="3">Klik tombol <strong>📸 SCAN &amp; SORTIR</strong> untuk memulai satu sesi analisis AI</li>
+                <li data-number="4">AI hanya memproses area ROI — objek di luar kotak (wajah, dll.) <strong>diabaikan total</strong></li>
+                <li data-number="5">Minimum confidence: <strong>{{ min_confidence_pct }}%</strong> — di bawah itu sistem mengembalikan "Objek Tidak Dikenali"</li>
+                <li data-number="6">Atur slider <strong>Kalibrasi Ukuran</strong> untuk menentukan batas Apel Besar vs Apel Sedang</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===== RIGHT PANEL - CONTROL ===== -->
+    <div class="control-panel">
+
+        <!-- CONTROL CARD -->
+        <div class="control-card">
+            <div class="control-header">Kontrol</div>
+
+            <!-- Slider Kalibrasi (identik posisi dan style dengan aslinya) -->
+            <div style="margin: 0 0 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #6a1b9a;">
+                <label style="font-weight: bold; margin-bottom: 5px; display: block; font-size: 13px;">🔧 Kalibrasi Ukuran Apel (Pixel):</label>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <input type="range" min="1000" max="100000" step="500"
+                           value="{{ calibration_threshold }}"
+                           id="thresholdSlider" style="flex: 1;"
+                           oninput="updateThreshold(this.value)">
+                    <span id="thresholdValue" style="font-weight: bold; color: #6a1b9a; font-size: 14px;">{{ calibration_threshold }}</span>
+                </div>
+                <div style="font-size:11px;color:#9e9e9e;margin-top:4px;">Area &lt; nilai = Apel Sedang &nbsp;|&nbsp; Area ≥ nilai = Apel Besar</div>
+                <div id="calFeedback" style="font-size:11.5px;color:#888;margin-top:6px;min-height:16px;"></div>
+            </div>
+
+            <!-- Status -->
+            <div class="status-box">
+                <div class="status-dot inactive" id="statusDot"></div>
+                <span id="statusText">Status: Siap untuk deteksi</span>
+            </div>
+
+            <!-- Tombol -->
+            <div class="control-buttons">
+                <!-- TOMBOL UTAMA v4: SCAN & SORTIR -->
+                <button class="control-btn btn-scan" id="scanBtn" onclick="triggerScan()">
+                    <span>📸</span> SCAN &amp; SORTIR SEKARANG
+                </button>
+                <button class="control-btn btn-reset" onclick="resetData()">
+                    <span>🔄</span> Reset Data
+                </button>
+            </div>
+
+            <!-- Scan result indicator (muncul setelah scan, posisi di bawah tombol) -->
+            <div class="scan-result-box" id="scanResultBox">
+                <div class="sres-title" id="sresTitle"></div>
+                <div class="sres-msg"   id="sresMsg"></div>
+            </div>
+        </div>
+
+        <!-- DETECTION BOX (hijau = sukses, merah = tidak dikenali) -->
+        <div class="detection-box" id="detectionBox" style="display: none;">
+            <div class="detection-title" id="detectionTitle">🔍 Deteksi Saat Ini</div>
+            <div class="detection-grid">
+                <div class="detection-item">
+                    <div class="detection-label">ID BUAH</div>
+                    <div class="detection-value" id="fruitId">-</div>
+                </div>
+                <div class="detection-item">
+                    <div class="detection-label">NAMA BUAH</div>
+                    <div class="detection-value" id="fruitName">-</div>
+                </div>
+                <div class="detection-item">
+                    <div class="detection-label">UKURAN BUAH</div>
+                    <div class="detection-value" id="fruitSize">-</div>
+                </div>
+                <div class="detection-item">
+                    <div class="detection-label">WARNA BUAH</div>
+                    <div class="detection-value" id="fruitColor">-</div>
+                    <div class="color-preview" id="colorPreview"></div>
+                </div>
+                <div class="detection-item full-width">
+                    <div class="detection-label">STATUS BUAH</div>
+                    <div class="detection-value" id="fruitStatus">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STATS CARD - FORMULIR STYLE -->
+        <div class="stats-card">
+            <div class="stats-header">Statistik</div>
+            <div class="stats-body">
+                <div class="stat-row">
+                    <div class="stat-label-col">ID BUAH</div>
+                    <div class="stat-value-col" id="statId">-</div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-label-col">NAMA BUAH</div>
+                    <div class="stat-value-col" id="statName">-</div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-label-col">UKURAN BUAH</div>
+                    <div class="stat-value-col" id="statSize">-</div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-label-col">WARNA BUAH</div>
+                    <div class="stat-value-col" id="statColor">-</div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-label-col">STATUS</div>
+                    <div class="stat-value-col" id="statStatus">-</div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-label-col">CONFIDENCE</div>
+                    <div class="stat-value-col" id="statConf">-</div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /control-panel -->
+</div><!-- /penyortiran-grid -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+/* ================================================================
+   PENYORTIRAN v4 — MANUAL TRIGGER
+   Design: 100% original. Logic: /api/capture_and_sort.
+   [v4-1] Tidak ada auto-detect — AI hanya jalan saat tombol diklik.
+   [v4-2] ROI {{ roi_size }}×{{ roi_size }}px statis di tengah frame.
+   [v4-3] Confidence ≥ {{ min_confidence_pct }}%.
+   [v4-4] BGR→RGB sebelum model.predict().
+================================================================ */
+
+let isScanning = false;
+let syncTimer  = null;
+
+/* ── Elemen DOM ──────────────────────────────────────────────── */
+const $dot     = document.getElementById('statusDot');
+const $txt     = document.getElementById('statusText');
+const $scanBtn = document.getElementById('scanBtn');
+const $resBox  = document.getElementById('scanResultBox');
+const $resTitle= document.getElementById('sresTitle');
+const $resMsg  = document.getElementById('sresMsg');
+
+/* ================================================================
+   SLIDER KALIBRASI — identik dengan aslinya
+================================================================ */
+let calDebounce = null;
+function updateThreshold(val) {
+    val = parseInt(val);
+    document.getElementById('thresholdValue').innerText = val.toLocaleString('id-ID');
+    clearTimeout(calDebounce);
+    calDebounce = setTimeout(async () => {
+        try {
+            const r = await fetch('/api/set_threshold', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ value: val }),
+            });
+            const d = await r.json();
+            const fb = document.getElementById('calFeedback');
+            if (d.success) {
+                fb.style.color = '#388e3c';
+                fb.textContent = `✅ Threshold: ${d.new_threshold.toLocaleString('id-ID')} px²`;
+            } else {
+                fb.style.color = '#c62828';
+                fb.textContent = '❌ Gagal menyimpan';
+            }
+            setTimeout(() => fb.textContent = '', 3000);
+        } catch(e) { console.error(e); }
+    }, 400);
+}
+
+/* ================================================================
+   TRIGGER SCAN UTAMA  [v4-1]
+================================================================ */
+async function triggerScan() {
+    if (isScanning) return;
+    isScanning = true;
+    $scanBtn.disabled = true;
+
+    // Flash putih singkat — efek kamera industri
+    const flash = document.getElementById('scanFlash');
+    flash.style.opacity = '0.85';
+    setTimeout(() => { flash.style.opacity = '0'; }, 130);
+
+    // Spinner overlay di video
+    document.getElementById('scanOverlay').classList.add('active');
+
+    updateStatus('scanning', 'Status: Menganalisis area ROI...');
+    hideScanResult();
+
+    try {
+        const r = await fetch('/api/capture_and_sort', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const d = await r.json();
+        handleScanResult(d);
+    } catch (e) {
+        console.error('Scan error:', e);
+        showScanResult('error', '❌ Koneksi Gagal', 'Pastikan server Flask berjalan: ' + e.message);
+        updateStatus('inactive', 'Status: Error — coba lagi');
+    } finally {
+        document.getElementById('scanOverlay').classList.remove('active');
+        isScanning = false;
+        $scanBtn.disabled = false;
+    }
+}
+
+/* ── Proses hasil dari /api/capture_and_sort ──────────────── */
+function handleScanResult(d) {
+    if (d.success && d.saved && d.detection) {
+        const det = d.detection;
+
+        // Scan result indicator
+        showScanResult('success', 'DATA TERSIMPAN! ✅', `${det.label} — ${det.confidence}`);
+
+        // Detection box hijau
+        displayDetection(det, true);
+
+        // Statistik formulir
+        updateStats(det);
+
+        // Counter sync
+        if (d.counts) syncCounterDisplay(d.counts);
+
+        updateStatus('active', `Status: Terdeteksi — ${det.label} (${det.confidence})`);
+
+        // Auto-hide setelah 3 detik
+        setTimeout(hideScanResult, 3000);
+        setTimeout(() => updateStatus('inactive', 'Status: Siap untuk scan berikutnya'), 3200);
+
+    } else {
+        // Objek tidak dikenali
+        const reason = d.reason || 'Objek tidak dapat dikenali';
+        showScanResult('error', '❓ Objek Tidak Dikenali', reason);
+        displayDetection(null, false, reason);
+        updateStatus('inactive', 'Status: Tidak dikenali — coba lagi');
+
+        // Isi confidence meski gagal
+        if (d.confidence) {
+            animateStat('statConf', (d.confidence * 100).toFixed(1) + '%');
+        }
+
+        setTimeout(hideScanResult, 4000);
+    }
+
+    if (d.counts) syncCounterDisplay(d.counts);
+}
+
+/* ================================================================
+   DISPLAY DETECTION — identik style dengan original
+================================================================ */
+function displayDetection(fruit, success, errorMsg) {
+    const box = document.getElementById('detectionBox');
+    box.style.display = 'block';
+
+    if (!success) {
+        // Box merah — objek tidak dikenali
+        box.className = 'detection-box not-found';
+        document.getElementById('detectionTitle').textContent = '❓ Objek Tidak Dikenali';
+        document.getElementById('fruitId').textContent     = '-';
+        document.getElementById('fruitName').textContent   = 'TIDAK DIKENALI';
+        document.getElementById('fruitSize').textContent   = '-';
+        document.getElementById('fruitColor').textContent  = errorMsg || '-';
+        document.getElementById('colorPreview').style.background = '#9e9e9e';
+        document.getElementById('fruitStatus').textContent = 'Confidence terlalu rendah / Tidak ada objek di ROI';
+        return;
+    }
+
+    // Box hijau — sukses
+    box.className = 'detection-box';
+    document.getElementById('detectionTitle').textContent = '🔍 Deteksi Saat Ini';
+    document.getElementById('fruitId').textContent     = fruit.id     || '-';
+    document.getElementById('fruitName').textContent   = fruit.name   || '-';
+    document.getElementById('fruitSize').textContent   = fruit.size   || '-';
+    document.getElementById('fruitColor').textContent  = fruit.color  || '-';
+    document.getElementById('colorPreview').style.background = fruit.color || '#ccc';
+    document.getElementById('fruitStatus').textContent = fruit.status || '-';
+
+    // Re-trigger animasi
+    box.style.animation = 'none';
+    void box.offsetWidth;
+    box.style.animation = 'fadeInUp 0.5s ease-out';
+}
+
+/* ================================================================
+   UPDATE STATISTIK FORMULIR — identik dengan original
+================================================================ */
+function updateStats(fruit) {
+    animateStat('statId',     fruit.id         || '-');
+    animateStat('statName',   fruit.name        || '-');
+    animateStat('statSize',   fruit.size        || '-');
+    animateStat('statColor',  fruit.color       || '-');
+    animateStat('statStatus', fruit.status      || '-');
+    animateStat('statConf',   fruit.confidence  || '-');
+}
+
+function animateStat(id, value) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = value;
+    el.classList.remove('hl');
+    void el.offsetWidth;
+    el.classList.add('hl');
+}
+
+/* ================================================================
+   RESET DATA — identik dengan original (tapi pakai /api/reset_data)
+================================================================ */
+async function resetData() {
+    if (!confirm('Apakah Anda yakin ingin mereset semua data?\nAngka di Dashboard & Monitoring juga terhapus.')) return;
+    try {
+        const r = await fetch('/api/reset_data', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const d = await r.json();
+        if (d.success) {
+            // Reset formulir statistik
+            ['statId','statName','statSize','statColor','statStatus','statConf'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = '-';
+            });
+            document.getElementById('detectionBox').style.display = 'none';
+            hideScanResult();
+            updateStatus('inactive', 'Status: Siap untuk deteksi');
+            alert('Data telah direset');
+        }
+    } catch(e) {
+        alert('Gagal reset data: ' + e.message);
+    }
+}
+
+/* ================================================================
+   SCAN RESULT BOX HELPERS
+================================================================ */
+function showScanResult(type, title, msg) {
+    $resBox.className  = 'scan-result-box show ' + type;
+    $resTitle.className= 'sres-title ' + (type === 'success' ? 'ok' : 'err');
+    $resMsg.className  = 'sres-msg '   + (type === 'success' ? 'ok' : 'err');
+    $resTitle.textContent = title;
+    $resMsg.textContent   = msg;
+}
+function hideScanResult() { $resBox.classList.remove('show'); }
+
+/* ================================================================
+   STATUS BOX
+================================================================ */
+function updateStatus(state, txt) {
+    $dot.className  = 'status-dot ' + state;
+    $txt.textContent = txt;
+}
+
+/* ================================================================
+   VIDEO ERROR RECOVERY
+================================================================ */
+function onVideoErr() {
+    console.warn('Video feed error — reconnect dalam 2s...');
+    setTimeout(() => {
+        const vid = document.getElementById('videoFeed');
+        if (vid) vid.src = '/video_feed/sorting?' + Date.now();
+    }, 2000);
+}
+
+/* ================================================================
+   SINKRONISASI RINGAN (setiap 5 detik — HANYA counter, bukan AI)
+   Tidak ada auto-detect sama sekali.
+================================================================ */
+function syncCounterDisplay(counts) {
+    /* Jika halaman monitoring/dashboard terbuka di tab lain,
+       data tetap sinkron karena fruit_data di server sudah diupdate
+       saat /api/capture_and_sort berhasil. Tidak perlu polling agresif. */
+    // (Opsional: tampilkan mini-counter jika diperlukan di masa depan)
+}
+
+async function syncFromServer() {
+    try {
+        const r = await fetch('/api/get_scan_status');
+        const d = await r.json();
+        /* Update threshold display dari server jika berubah dari luar */
+        if (d.params && d.params.calibration_threshold) {
+            const slider = document.getElementById('thresholdSlider');
+            const label  = document.getElementById('thresholdValue');
+            if (slider && Math.abs(parseInt(slider.value) - d.params.calibration_threshold) > 100) {
+                slider.value = d.params.calibration_threshold;
+                label.textContent = d.params.calibration_threshold.toLocaleString('id-ID');
+            }
+        }
+    } catch(e) { /* silent */ }
+}
+
+/* ================================================================
+   KEYBOARD SHORTCUT: Space = Scan
+================================================================ */
+document.addEventListener('keydown', function(e) {
+    if (e.code === 'Space' && !isScanning &&
+        document.activeElement.tagName !== 'INPUT' &&
+        document.activeElement.tagName !== 'BUTTON') {
+        e.preventDefault();
+        triggerScan();
+    }
+});
+
+/* ================================================================
+   INIT
+================================================================ */
+document.addEventListener('DOMContentLoaded', function() {
+    updateStatus('inactive', 'Status: Siap untuk deteksi');
+    // Sync ringan setiap 5 detik
+    syncTimer = setInterval(syncFromServer, 5000);
+});
+
+window.addEventListener('beforeunload', function() {
+    if (syncTimer) clearInterval(syncTimer);
+});
+</script>
+{% endblock %}

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SpecBudget PC Build Calculator – select components and check your budget instantly.">
+  <title>Calculator – SpecBudget</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Spec<span>Budget</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculate.html" class="active">Calculator</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="calc-page">
+
+    <!-- Page header -->
+    <div class="calc-header">
+      <h1>⚙️ PC Build <span>Calculator</span></h1>
+      <p>Select your components, set your budget, and get an instant breakdown.</p>
+    </div>
+
+    <!-- Logged-in user pill (populated by JS) -->
+    <div class="user-welcome" id="userWelcome">
+      <span>Signed in as <strong id="userNameDisplay">—</strong></span>
+      <button class="logout-btn" id="logoutBtn">Logout</button>
+    </div>
+
+    <!-- Component image gallery (multimedia requirement) -->
+    <div class="comp-gallery" style="margin-bottom:32px;">
+      <div class="comp-img-card">
+        <img src="assets/cpu.svg" alt="CPU" onerror="this.outerHTML='<div style=\'font-size:2.5rem\'>🧠</div>'">
+        <span>Processor</span>
+      </div>
+      <div class="comp-img-card">
+        <img src="assets/gpu.svg" alt="GPU" onerror="this.outerHTML='<div style=\'font-size:2.5rem\'>🎮</div>'">
+        <span>Graphics Card</span>
+      </div>
+      <div class="comp-img-card">
+        <img src="assets/ram.svg" alt="RAM" onerror="this.outerHTML='<div style=\'font-size:2.5rem\'>💾</div>'">
+        <span>Memory</span>
+      </div>
+      <div class="comp-img-card">
+        <img src="assets/storage.svg" alt="Storage" onerror="this.outerHTML='<div style=\'font-size:2.5rem\'>💿</div>'">
+        <span>Storage</span>
+      </div>
+      <div class="comp-img-card">
+        <img src="assets/psu.svg" alt="PSU" onerror="this.outerHTML='<div style=\'font-size:2.5rem\'>🔌</div>'">
+        <span>Power Supply</span>
+      </div>
+      <div class="comp-img-card">
+        <img src="assets/mobo.svg" alt="Motherboard" onerror="this.outerHTML='<div style=\'font-size:2.5rem\'>📋</div>'">
+        <span>Full System</span>
+      </div>
+    </div>
+
+    <!-- Main two-column layout: form | results -->
+    <div class="calc-layout">
+
+      <!-- LEFT: Component selection form -->
+      <div class="calc-panel">
+        <h2 class="panel-title">🛠️ Select Components</h2>
+
+        <form id="calcForm" novalidate>
+
+          <div class="form-group">
+            <label for="cpu">CPU (Processor)</label>
+            <select id="cpu">
+              <!-- Populated by calculator.js -->
+            </select>
+            <span class="field-error" id="cpuErr"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="gpu">GPU (Graphics Card)</label>
+            <select id="gpu"></select>
+            <span class="field-error" id="gpuErr"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="ram">RAM (Memory)</label>
+            <select id="ram"></select>
+            <span class="field-error" id="ramErr"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="storage">Storage</label>
+            <select id="storage"></select>
+            <span class="field-error" id="storageErr"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="psu">Power Supply (PSU)</label>
+            <select id="psu"></select>
+            <span class="field-error" id="psuErr"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Your Budget (RM)</label>
+            <input
+              type="number"
+              id="budget"
+              placeholder="e.g. 3500"
+              min="100"
+              max="50000"
+              step="50"
+            >
+            <span class="field-error" id="budgetErr"></span>
+          </div>
+
+          <!-- PSU warning shows up here if needed -->
+          <div class="warn-box" id="warnBox"></div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">⚡ Calculate</button>
+            <button type="button" class="btn btn-secondary" id="resetBtn">🔄 Reset</button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- RIGHT: Results panel -->
+      <div class="calc-panel" id="resultsPanel">
+        <h2 class="panel-title">📋 Build Summary</h2>
+
+        <!-- Shown before first calculation -->
+        <div class="results-placeholder" id="resultsPlaceholder">
+          <span class="ph-icon">🖥️</span>
+          <p>Pick your components and enter your budget,<br>then click <strong>Calculate</strong> to see the full breakdown.</p>
+        </div>
+
+        <!-- Shown after calculation (hidden initially) -->
+        <div class="result-grid" id="resultGrid" style="display:none;">
+
+          <div class="res-card">
+            <div class="res-label">💰 Total Build Cost</div>
+            <div class="res-value" id="resTotalPrice">RM 0</div>
+          </div>
+
+          <div class="res-card">
+            <div class="res-label">📊 Budget Status</div>
+            <div class="res-value" id="resBudget">—</div>
+            <!-- Budget usage bar -->
+            <div class="budget-bar-wrap">
+              <div class="budget-bar-track">
+                <div class="budget-bar-fill" id="budgetBarFill" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="res-card">
+            <div class="res-label">⚡ Total Power Draw</div>
+            <div class="res-value" id="resPower">0 W</div>
+          </div>
+
+          <div class="res-card">
+            <div class="res-label">🔌 PSU Adequacy</div>
+            <div class="res-value" id="resPsu">—</div>
+          </div>
+
+          <div class="res-card">
+            <div class="res-label">🎮 Performance Tier</div>
+            <div class="res-value" id="resPerf">—</div>
+          </div>
+
+          <div class="res-card">
+            <div class="res-label">🧾 Parts Breakdown</div>
+            <div id="resBreakdown" class="res-value" style="font-size:0.85rem;font-weight:400"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="margin-top:40px;">
+    <div class="footer-logo">Spec<span>Budget</span></div>
+    <p>© 2025 SpecBudget — PC Build Planner 🇲🇾</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="calculate.html">Calculator</a>
+    </nav>
+  </footer>
+
+  <!-- all js is inline below -->
+  <script>
+    // -- auth helpers (session guard) --
+    var SESSION_KEY = 'specbudget_session'
+
+    function getCurrentUser() {
+      try { return JSON.parse(sessionStorage.getItem(SESSION_KEY)) || null }
+      catch(e) { return null }
+    }
+
+    // redirect to login if not signed in
+    var activeUser = getCurrentUser()
+    if (!activeUser) {
+      window.location.href = 'login.html'
+    } else {
+      document.getElementById('userNameDisplay').textContent = activeUser.fullName
+    }
+
+    // logout clears session and goes back to login
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      sessionStorage.removeItem(SESSION_KEY)
+      window.location.href = 'login.html'
+    })
+
+    // mobile nav toggle
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open')
+    })
+
+    // -- field error helpers --
+    function showErr(fieldId, msg) {
+      var s = document.getElementById(fieldId + 'Err')
+      var f = document.getElementById(fieldId)
+      if (s) s.textContent = msg
+      if (f) f.classList.add('input-invalid')
+    }
+
+    function clearErr(fieldId) {
+      var s = document.getElementById(fieldId + 'Err')
+      var f = document.getElementById(fieldId)
+      if (s) s.textContent = ''
+      if (f) f.classList.remove('input-invalid')
+    }
+
+    // ---- parts database ----
+    // prices in RM, watt = TDP, tier = entry/mid/high
+    var pcParts = {
+      cpu: [
+        // entry
+        { id: 'celeron-g5905',  name: 'Intel Celeron G5905',      price: 280,  watt: 58,  tier: 'entry' },
+        { id: 'pentium-g7400',  name: 'Intel Pentium Gold G7400',  price: 380,  watt: 46,  tier: 'entry' },
+        { id: 'ryzen3-3300x',   name: 'AMD Ryzen 3 3300X',         price: 420,  watt: 65,  tier: 'entry' },
+        { id: 'i3-12100',       name: 'Intel Core i3-12100',       price: 550,  watt: 60,  tier: 'entry' },
+        { id: 'ryzen3-4100',    name: 'AMD Ryzen 3 4100',          price: 480,  watt: 65,  tier: 'entry' },
+        // mid
+        { id: 'i5-12400',       name: 'Intel Core i5-12400',       price: 780,  watt: 65,  tier: 'mid' },
+        { id: 'ryzen5-5600x',   name: 'AMD Ryzen 5 5600X',         price: 860,  watt: 105, tier: 'mid' },
+        { id: 'i5-13600k',      name: 'Intel Core i5-13600K',      price: 1150, watt: 125, tier: 'mid' },
+        { id: 'ryzen5-7600x',   name: 'AMD Ryzen 5 7600X',         price: 1050, watt: 105, tier: 'mid' },
+        { id: 'i7-12700',       name: 'Intel Core i7-12700',       price: 1350, watt: 125, tier: 'mid' },
+        // high end
+        { id: 'ryzen7-5800x',   name: 'AMD Ryzen 7 5800X',         price: 1480, watt: 105, tier: 'high' },
+        { id: 'i7-13700k',      name: 'Intel Core i7-13700K',      price: 1890, watt: 125, tier: 'high' },
+        { id: 'ryzen9-5900x',   name: 'AMD Ryzen 9 5900X',         price: 2050, watt: 105, tier: 'high' },
+        { id: 'i9-12900k',      name: 'Intel Core i9-12900K',      price: 2400, watt: 150, tier: 'high' },
+        { id: 'ryzen9-7950x',   name: 'AMD Ryzen 9 7950X',         price: 3800, watt: 170, tier: 'high' }
+      ],
+      gpu: [
+        // entry gpus
+        { id: 'gt1030',         name: 'NVIDIA GT 1030',            price: 320,  watt: 30,  tier: 'entry' },
+        { id: 'rx6400',         name: 'AMD Radeon RX 6400',        price: 550,  watt: 53,  tier: 'entry' },
+        { id: 'gtx1650',        name: 'NVIDIA GTX 1650',           price: 780,  watt: 75,  tier: 'entry' },
+        { id: 'rx6500xt',       name: 'AMD Radeon RX 6500 XT',     price: 680,  watt: 107, tier: 'entry' },
+        { id: 'rtx3050',        name: 'NVIDIA RTX 3050',           price: 1050, watt: 130, tier: 'entry' },
+        // mid range
+        { id: 'rx6600',         name: 'AMD Radeon RX 6600',        price: 1100, watt: 160, tier: 'mid' },
+        { id: 'rtx3060',        name: 'NVIDIA RTX 3060',           price: 1250, watt: 170, tier: 'mid' },
+        { id: 'rx6600xt',       name: 'AMD Radeon RX 6600 XT',     price: 1350, watt: 160, tier: 'mid' },
+        { id: 'rtx3060ti',      name: 'NVIDIA RTX 3060 Ti',        price: 1600, watt: 200, tier: 'mid' },
+        { id: 'rx6700xt',       name: 'AMD Radeon RX 6700 XT',     price: 1850, watt: 230, tier: 'mid' },
+        // high end
+        { id: 'rtx3070',        name: 'NVIDIA RTX 3070',           price: 2100, watt: 220, tier: 'high' },
+        { id: 'rx6800xt',       name: 'AMD Radeon RX 6800 XT',     price: 2600, watt: 300, tier: 'high' },
+        { id: 'rtx3080',        name: 'NVIDIA RTX 3080',           price: 3400, watt: 320, tier: 'high' },
+        { id: 'rtx4070',        name: 'NVIDIA RTX 4070',           price: 3200, watt: 200, tier: 'high' },
+        { id: 'rtx4090',        name: 'NVIDIA RTX 4090',           price: 7800, watt: 450, tier: 'high' }
+      ],
+      ram: [
+        // budget ram
+        { id: 'ddr4-4gb',       name: '4GB DDR4 2666MHz',          price: 120,  watt: 5,   tier: 'entry' },
+        { id: 'ddr4-8gb',       name: '8GB DDR4 3200MHz',          price: 210,  watt: 8,   tier: 'entry' },
+        { id: 'ddr4-8gb-3600',  name: '8GB DDR4 3600MHz',          price: 250,  watt: 8,   tier: 'entry' },
+        { id: 'ddr4-16gb-2666', name: '16GB DDR4 2666MHz',         price: 320,  watt: 12,  tier: 'entry' },
+        { id: 'ddr4-16gb',      name: '16GB DDR4 3200MHz',         price: 370,  watt: 15,  tier: 'mid' },
+        { id: 'ddr4-16gb-3600', name: '16GB DDR4 3600MHz',         price: 420,  watt: 15,  tier: 'mid' },
+        { id: 'ddr4-32gb',      name: '32GB DDR4 3200MHz',         price: 670,  watt: 18,  tier: 'mid' },
+        { id: 'ddr4-32gb-3600', name: '32GB DDR4 3600MHz',         price: 750,  watt: 18,  tier: 'mid' },
+        { id: 'ddr5-16gb',      name: '16GB DDR5 4800MHz',         price: 680,  watt: 16,  tier: 'mid' },
+        { id: 'ddr5-32gb',      name: '32GB DDR5 5200MHz',         price: 1100, watt: 20,  tier: 'high' },
+        { id: 'ddr4-64gb',      name: '64GB DDR4 3200MHz',         price: 1300, watt: 25,  tier: 'high' },
+        { id: 'ddr5-32gb-6000', name: '32GB DDR5 6000MHz',         price: 1380, watt: 22,  tier: 'high' },
+        { id: 'ddr5-64gb',      name: '64GB DDR5 5200MHz',         price: 2200, watt: 32,  tier: 'high' },
+        { id: 'ddr5-64gb-6000', name: '64GB DDR5 6000MHz',         price: 2650, watt: 34,  tier: 'high' },
+        { id: 'ddr5-128gb',     name: '128GB DDR5 4800MHz',        price: 4200, watt: 50,  tier: 'high' }
+      ],
+      storage: [
+        // hdd + budget ssd
+        { id: 'hdd-500gb',      name: 'HDD 500GB 7200RPM',         price: 130,  watt: 8,   tier: 'entry' },
+        { id: 'hdd-1tb',        name: 'HDD 1TB 7200RPM',           price: 185,  watt: 9,   tier: 'entry' },
+        { id: 'ssd-240gb',      name: 'SSD SATA 240GB',            price: 120,  watt: 3,   tier: 'entry' },
+        { id: 'ssd-480gb',      name: 'SSD SATA 480GB',            price: 180,  watt: 4,   tier: 'entry' },
+        { id: 'ssd-960gb',      name: 'SSD SATA 960GB',            price: 280,  watt: 5,   tier: 'entry' },
+        // nvme mid
+        { id: 'nvme-256gb',     name: 'NVMe M.2 256GB',            price: 160,  watt: 4,   tier: 'mid' },
+        { id: 'nvme-512gb',     name: 'NVMe M.2 512GB',            price: 250,  watt: 5,   tier: 'mid' },
+        { id: 'nvme-1tb',       name: 'NVMe M.2 1TB',              price: 400,  watt: 7,   tier: 'mid' },
+        { id: 'nvme-2tb',       name: 'NVMe M.2 2TB',              price: 720,  watt: 8,   tier: 'mid' },
+        { id: 'combo-1tb-hdd',  name: 'NVMe 512GB + HDD 1TB',      price: 430,  watt: 14,  tier: 'mid' },
+        // fast nvme
+        { id: 'pcie4-1tb',      name: 'PCIe Gen4 NVMe 1TB',        price: 620,  watt: 8,   tier: 'high' },
+        { id: 'pcie4-2tb',      name: 'PCIe Gen4 NVMe 2TB',        price: 1050, watt: 9,   tier: 'high' },
+        { id: 'pcie4-4tb',      name: 'PCIe Gen4 NVMe 4TB',        price: 1900, watt: 10,  tier: 'high' },
+        { id: 'raid-4tb',       name: 'NVMe RAID 2x2TB',           price: 2200, watt: 18,  tier: 'high' },
+        { id: 'pcie5-2tb',      name: 'PCIe Gen5 NVMe 2TB',        price: 2800, watt: 12,  tier: 'high' }
+      ],
+      psu: [
+        // lower wattage
+        { id: 'psu-450w',       name: 'PSU 450W Bronze',           price: 160,  watt: 450,  tier: 'entry' },
+        { id: 'psu-500w',       name: 'PSU 500W Bronze',           price: 200,  watt: 500,  tier: 'entry' },
+        { id: 'psu-550w',       name: 'PSU 550W Bronze',           price: 240,  watt: 550,  tier: 'entry' },
+        { id: 'psu-600w',       name: 'PSU 600W Bronze',           price: 280,  watt: 600,  tier: 'entry' },
+        { id: 'psu-550w-gold',  name: 'PSU 550W Gold',             price: 320,  watt: 550,  tier: 'mid' },
+        { id: 'psu-650w',       name: 'PSU 650W Bronze',           price: 300,  watt: 650,  tier: 'mid' },
+        { id: 'psu-650w-gold',  name: 'PSU 650W Gold',             price: 380,  watt: 650,  tier: 'mid' },
+        { id: 'psu-750w',       name: 'PSU 750W Bronze',           price: 400,  watt: 750,  tier: 'mid' },
+        { id: 'psu-750w-gold',  name: 'PSU 750W Gold',             price: 480,  watt: 750,  tier: 'mid' },
+        { id: 'psu-850w',       name: 'PSU 850W Gold',             price: 580,  watt: 850,  tier: 'mid' },
+        // big boi psus
+        { id: 'psu-850w-plat',  name: 'PSU 850W Platinum',         price: 680,  watt: 850,  tier: 'high' },
+        { id: 'psu-1000w',      name: 'PSU 1000W Gold',            price: 750,  watt: 1000, tier: 'high' },
+        { id: 'psu-1000w-plat', name: 'PSU 1000W Platinum',        price: 890,  watt: 1000, tier: 'high' },
+        { id: 'psu-1200w',      name: 'PSU 1200W Platinum',        price: 1100, watt: 1200, tier: 'high' },
+        { id: 'psu-1600w',      name: 'PSU 1600W Titanium',        price: 2200, watt: 1600, tier: 'high' }
+      ]
+    }
+
+    // fill a <select> with tier-grouped options
+    function populateSelect(selectId, parts) {
+      var sel = document.getElementById(selectId)
+      if (!sel) return
+      sel.innerHTML = '<option value="">-- Select ' + selectId.toUpperCase() + ' --</option>'
+      var lastTier = ''
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i]
+        if (p.tier !== lastTier) {
+          lastTier = p.tier
+          var grp = document.createElement('optgroup')
+          grp.label = p.tier === 'entry' ? '🟢 Entry Level'
+                    : p.tier === 'mid'   ? '🟡 Mid Range'
+                    :                      '🔴 High End'
+          sel.appendChild(grp)
+        }
+        var opt = document.createElement('option')
+        opt.value = p.id
+        opt.textContent = p.name + ' — RM ' + p.price.toLocaleString('en-MY') + ', ' + p.watt + 'W'
+        sel.lastChild.appendChild(opt)
+      }
+    }
+
+    // find part by id
+    function findPart(list, id) {
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].id === id) return list[i]
+      }
+      return null
+    }
+
+    // performance label based on total build price
+    function ratePerformance(total) {
+      if (total >= 8000) return { label: '🔥 Extreme / Workstation', css: 'ok' }
+      if (total >= 5000) return { label: '🎮 Enthusiast Gaming',      css: 'ok' }
+      if (total >= 3000) return { label: '⚡ High-Performance Gaming', css: 'ok' }
+      if (total >= 1800) return { label: '🖥️ Mid-Range Gaming',        css: ''   }
+      if (total >= 900)  return { label: '📚 Budget / Student Build',  css: 'caution' }
+      return               { label: '🔰 Entry / Basic Office',        css: 'caution' }
+    }
+
+    // check psu headroom - need 20% above component draw
+    function checkPsu(usedW, psuCap) {
+      var minW  = Math.ceil(usedW * 1.2)
+      var spare = psuCap - usedW
+      var pct   = Math.round((spare / psuCap) * 100)
+
+      if (psuCap < minW) {
+        return {
+          label: '❌ Insufficient — needs at least ' + minW + 'W (20% headroom)',
+          css: 'bad', alert: 'danger',
+          msg: '⚠ DANGER: PSU too weak! System draws ' + usedW + 'W, PSU is only ' + psuCap + 'W. Need ' + minW + 'W minimum.'
+        }
+      }
+      if (pct < 20) {
+        return {
+          label: '⚠️ Marginal — only ' + pct + '% headroom (need ≥20%)',
+          css: 'caution', alert: 'warning',
+          msg: '⚠ WARNING: Low PSU headroom (' + pct + '%). Consider a bigger PSU for stability.'
+        }
+      }
+      return {
+        label: '✅ Sufficient — ' + pct + '% headroom (' + spare + 'W spare)',
+        css: 'ok', alert: null, msg: ''
+      }
+    }
+
+    // main calc
+    function runCalculation() {
+      var cpuId     = document.getElementById('cpu').value
+      var gpuId     = document.getElementById('gpu').value
+      var ramId     = document.getElementById('ram').value
+      var storId    = document.getElementById('storage').value
+      var psuId     = document.getElementById('psu').value
+      var budgetRaw = document.getElementById('budget').value
+
+      var hasError = false
+      if (!cpuId)  { showErr('cpu',     'Please select a CPU.');     hasError = true } else clearErr('cpu')
+      if (!gpuId)  { showErr('gpu',     'Please select a GPU.');     hasError = true } else clearErr('gpu')
+      if (!ramId)  { showErr('ram',     'Please select RAM.');        hasError = true } else clearErr('ram')
+      if (!storId) { showErr('storage', 'Please select storage.');   hasError = true } else clearErr('storage')
+      if (!psuId)  { showErr('psu',     'Please select a PSU.');     hasError = true } else clearErr('psu')
+
+      var budget = parseFloat(budgetRaw)
+      if (!budgetRaw || isNaN(budget) || budget < 100 || budget > 50000) {
+        showErr('budget', 'Enter a budget between RM100 and RM50,000.')
+        hasError = true
+      } else { clearErr('budget') }
+
+      if (hasError) return
+
+      var cpu     = findPart(pcParts.cpu,     cpuId)
+      var gpu     = findPart(pcParts.gpu,     gpuId)
+      var ram     = findPart(pcParts.ram,     ramId)
+      var storage = findPart(pcParts.storage, storId)
+      var psu     = findPart(pcParts.psu,     psuId)
+
+      // add em all up
+      var totalCost = cpu.price + gpu.price + ram.price + storage.price + psu.price
+      var totalW    = cpu.watt  + gpu.watt  + ram.watt  + storage.watt
+      var diff      = budget - totalCost
+      var inBudget  = diff >= 0
+
+      var perf    = ratePerformance(totalCost)
+      var psuInfo = checkPsu(totalW, psu.watt)
+      var usePct  = Math.min(Math.round((totalCost / budget) * 100), 100)
+
+      document.getElementById('resultsPlaceholder').style.display = 'none'
+      var grid = document.getElementById('resultGrid')
+      grid.style.display = 'flex'
+
+      document.getElementById('resTotalPrice').textContent = 'RM ' + totalCost.toLocaleString('en-MY')
+      document.getElementById('resTotalPrice').className   = 'res-value'
+
+      var budEl   = document.getElementById('resBudget')
+      var diffStr = 'RM ' + Math.abs(diff).toLocaleString('en-MY')
+      if (inBudget) {
+        budEl.textContent = '✅ Within Budget  •  ' + diffStr + ' remaining'
+        budEl.className   = 'res-value ok'
+      } else {
+        budEl.textContent = '❌ Over Budget  •  Short by ' + diffStr
+        budEl.className   = 'res-value bad'
+      }
+
+      var bar = document.getElementById('budgetBarFill')
+      bar.style.width = usePct + '%'
+      bar.className   = 'budget-bar-fill' + (inBudget ? '' : ' over')
+
+      document.getElementById('resPower').textContent = totalW + ' W  (component draw only)'
+      document.getElementById('resPower').className   = 'res-value'
+
+      var psuEl = document.getElementById('resPsu')
+      psuEl.textContent = psuInfo.label
+      psuEl.className   = 'res-value ' + psuInfo.css
+
+      var perfEl = document.getElementById('resPerf')
+      perfEl.textContent = perf.label
+      perfEl.className   = 'res-value ' + perf.css
+
+      document.getElementById('resBreakdown').innerHTML =
+        '<small style="color:var(--text-muted);font-size:0.78rem;line-height:1.9">' +
+        'CPU: RM' + cpu.price.toLocaleString('en-MY') + ' &nbsp;|&nbsp; ' +
+        'GPU: RM' + gpu.price.toLocaleString('en-MY') + ' &nbsp;|&nbsp; ' +
+        'RAM: RM' + ram.price.toLocaleString('en-MY') + ' &nbsp;|&nbsp; ' +
+        'Storage: RM' + storage.price.toLocaleString('en-MY') + ' &nbsp;|&nbsp; ' +
+        'PSU: RM' + psu.price.toLocaleString('en-MY') + '</small>'
+
+      // show psu warning if needed
+      var warnBox = document.getElementById('warnBox')
+      if (psuInfo.alert) {
+        warnBox.textContent = psuInfo.msg
+        warnBox.className   = 'warn-box show ' + psuInfo.alert
+      } else {
+        warnBox.className = 'warn-box'
+      }
+
+      if (window.innerWidth < 900) {
+        document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+
+    // reset everything
+    function resetCalc() {
+      ['cpu', 'gpu', 'ram', 'storage', 'psu'].forEach(function(id) {
+        document.getElementById(id).value = ''
+        clearErr(id)
+      })
+      document.getElementById('budget').value = ''
+      clearErr('budget')
+      document.getElementById('warnBox').className = 'warn-box'
+      document.getElementById('resultsPlaceholder').style.display = 'block'
+      document.getElementById('resultGrid').style.display = 'none'
+    }
+
+    // init on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      populateSelect('cpu',     pcParts.cpu)
+      populateSelect('gpu',     pcParts.gpu)
+      populateSelect('ram',     pcParts.ram)
+      populateSelect('storage', pcParts.storage)
+      populateSelect('psu',     pcParts.psu)
+
+      var form = document.getElementById('calcForm')
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault()
+          runCalculation()
+        })
+      }
+
+      var resetBtn = document.getElementById('resetBtn')
+      if (resetBtn) resetBtn.addEventListener('click', resetCalc)
+
+      // clear error highlight on change
+      ['cpu', 'gpu', 'ram', 'storage', 'psu', 'budget'].forEach(function(id) {
+        var el = document.getElementById(id)
+        if (el) el.addEventListener('change', function() { clearErr(id) })
+      })
+    })
+  </script>
+</body>
+</html>

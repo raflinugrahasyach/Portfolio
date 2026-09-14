@@ -1,0 +1,494 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - IoT Fruit Sorting System{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* ===== PAGE TITLE ===== */
+    .page-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 32px;
+        letter-spacing: -0.5px;
+    }
+
+    /* ===== FILTER SECTION ===== */
+    .filter-section {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .filter-section input[type="month"] {
+        padding: 11px 16px;
+        border: 2px solid #e1e4e8;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        color: #2c3e50;
+        transition: all 0.3s ease;
+        min-width: 200px;
+    }
+
+    .filter-section input[type="month"]:focus {
+        outline: none;
+        border-color: #5c6bc0;
+        box-shadow: 0 0 0 3px rgba(92, 107, 192, 0.1);
+    }
+
+    .filter-info {
+        color: #6c757d;
+        font-size: 14px;
+        margin-top: 14px;
+        font-weight: 400;
+    }
+
+    .filter-info strong {
+        color: #2c3e50;
+        font-weight: 600;
+    }
+
+    /* ===== SUMMARY TABLE ===== */
+    .summary-card {
+        margin-top: 8px;
+    }
+
+    .summary-table {
+        margin-top: 0;
+    }
+
+    .summary-table th {
+        background: #f8f9fa;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+    }
+
+    .summary-table th:first-child {
+        width: 100px;
+    }
+
+    .summary-table th:last-child {
+        width: 200px;
+    }
+
+    .summary-table td {
+        font-size: 15px;
+    }
+
+    .summary-table .fruit-name {
+        text-align: left;
+        font-weight: 500;
+        color: #2c3e50;
+    }
+
+    .summary-table .fruit-count {
+        text-align: center;
+    }
+
+    .summary-table .count-link {
+        color: #5c6bc0;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.2s ease;
+    }
+
+    .summary-table .count-link:hover {
+        color: #3f51b5;
+        text-decoration: underline;
+    }
+
+    /* ===== TOTAL ROW - CRITICAL STYLING ===== */
+    .summary-table tfoot tr {
+        background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+    }
+
+    .summary-table tfoot td {
+        color: white;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 18px 20px;
+        border-bottom: none;
+        letter-spacing: 0.5px;
+    }
+
+    .summary-table tfoot td:first-child {
+        text-align: left;
+    }
+
+    /* ===== CHART SECTION ===== */
+    .chart-card {
+        padding: 32px 28px;
+    }
+
+    .chart-title {
+        text-align: center;
+        font-weight: 700;
+        color: #2c3e50;
+        font-size: 16px;
+        margin-bottom: 20px;
+        letter-spacing: 0.3px;
+    }
+
+    .chart-legend {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 18px;
+        margin-bottom: 24px;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .legend-color {
+        width: 36px;
+        height: 16px;
+        border-radius: 3px;
+    }
+
+    .legend-apel {
+        background: rgba(255, 99, 132, 0.6);
+    }
+
+    .legend-tomat {
+        background: rgba(75, 192, 192, 0.6);
+    }
+
+    .chart-container {
+        position: relative;
+        height: 400px;
+        margin-top: 12px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+        .filter-section {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .filter-section input[type="month"] {
+            width: 100%;
+        }
+
+        .summary-table {
+            font-size: 13px;
+        }
+
+        .chart-container {
+            height: 300px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- FILTER CARD -->
+<div class="card">
+    <div class="card-header">
+        <h3>Pilih Bulan</h3>
+    </div>
+    
+    <div class="filter-section">
+        <input type="month" id="monthFilter" value="{{ current_month_value }}">
+        <button class="btn btn-primary" onclick="applyFilter()">
+            <span>🔍</span> Filter
+        </button>
+        <button class="btn btn-danger" onclick="resetFilter()">
+            <span>🔄</span> Reset
+        </button>
+    </div>
+    
+    <div class="filter-info">
+        Menampilkan data bulan: <strong id="displayMonth">{{ current_month }}</strong>
+    </div>
+</div>
+
+<!-- SUMMARY CARD -->
+<div class="card summary-card">
+    <div class="card-header">
+        <h3>Ringkasan Data - <span id="summaryMonth">{{ current_month }}</span></h3>
+    </div>
+    
+    <table class="summary-table">
+        <thead>
+            <tr>
+                <th>NO</th>
+                <th>NAMA BUAH</th>
+                <th>TOTAL BUAH</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td class="fruit-name">Apel Besar</td>
+                <td class="fruit-count">
+                    <a href="#" class="count-link" id="count-apel-besar">{{ monthly_data.apel_besar }}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td class="fruit-name">Apel Sedang</td>
+                <td class="fruit-count">
+                    <a href="#" class="count-link" id="count-apel-sedang">{{ monthly_data.apel_sedang }}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td class="fruit-name">Tomat Masak</td>
+                <td class="fruit-count">
+                    <a href="#" class="count-link" id="count-tomat-masak">{{ monthly_data.tomat_masak }}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td class="fruit-name">Tomat Mentah</td>
+                <td class="fruit-count">
+                    <a href="#" class="count-link" id="count-tomat-mentah">{{ monthly_data.tomat_mentah }}</a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">TOTAL BUAH:</td>
+                <td id="totalCount">{{ monthly_data.apel_besar + monthly_data.apel_sedang + monthly_data.tomat_masak + monthly_data.tomat_mentah }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!-- CHART CARD -->
+<div class="card chart-card">
+    <div class="card-header">
+        <h3>Visualisasi Grafik (30 Hari Terakhir)</h3>
+    </div>
+    
+    <div class="chart-title">Tren Penyortiran Buah</div>
+    
+    <div class="chart-legend">
+        <div class="legend-item">
+            <div class="legend-color legend-apel"></div>
+            <span>Apel</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color legend-tomat"></div>
+            <span>Tomat</span>
+        </div>
+    </div>
+    
+    <div class="chart-container">
+        <canvas id="fruitChart"></canvas>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // ===== INITIALIZE MONTH FILTER =====
+    const now = new Date();
+    const currentMonthValue = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+    document.getElementById('monthFilter').value = currentMonthValue;
+
+    // ===== CHART DATA FROM BACKEND =====
+    const chartData = {{ chart_data | tojson }};
+    
+    // ===== PREPARE CHART DATA =====
+    const dates = Object.keys(chartData).sort();
+    const apelData = dates.map(date => chartData[date].apel);
+    const tomatData = dates.map(date => chartData[date].tomat);
+    const labels = dates.map(date => {
+        const d = new Date(date);
+        return d.getDate() + '/' + (d.getMonth() + 1);
+    });
+
+    // ===== CREATE CHART =====
+    const ctx = document.getElementById('fruitChart').getContext('2d');
+    const fruitChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Apel',
+                    data: apelData,
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                },
+                {
+                    label: 'Tomat',
+                    data: tomatData,
+                    borderColor: 'rgb(75, 192, 192)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    pointBackgroundColor: 'rgb(75, 192, 192)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    padding: 12,
+                    titleFont: {
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 13
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0,
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: {
+                            size: 11
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            },
+            interaction: {
+                mode: 'nearest',
+                axis: 'x',
+                intersect: false
+            }
+        }
+    });
+
+    // ===== APPLY FILTER FUNCTION =====
+    function applyFilter() {
+        const monthValue = document.getElementById('monthFilter').value;
+        
+        if (!monthValue) {
+            alert('Silakan pilih bulan terlebih dahulu');
+            return;
+        }
+        
+        $.ajax({
+            url: '/api/filter_dashboard',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ month: monthValue }),
+            success: function(response) {
+                if (response.success) {
+                    const data = response.data;
+                    
+                    // Update counts with animation
+                    updateCount('count-apel-besar', data.apel_besar);
+                    updateCount('count-apel-sedang', data.apel_sedang);
+                    updateCount('count-tomat-masak', data.tomat_masak);
+                    updateCount('count-tomat-mentah', data.tomat_mentah);
+                    
+                    // Update total
+                    const total = data.apel_besar + data.apel_sedang + data.tomat_masak + data.tomat_mentah;
+                    updateCount('totalCount', total);
+                    
+                    // Update display month
+                    const [year, month] = monthValue.split('-');
+                    const monthNames = [
+                        'January', 'February', 'March', 'April', 'May', 'June',
+                        'July', 'August', 'September', 'October', 'November', 'December'
+                    ];
+                    const displayText = monthNames[parseInt(month) - 1] + ' ' + year;
+                    
+                    document.getElementById('displayMonth').innerHTML = '<strong>' + displayText + '</strong>';
+                    document.getElementById('summaryMonth').textContent = displayText;
+                }
+            },
+            error: function() {
+                alert('Gagal memfilter data. Silakan coba lagi.');
+            }
+        });
+    }
+
+    // ===== RESET FILTER FUNCTION =====
+    function resetFilter() {
+        document.getElementById('monthFilter').value = currentMonthValue;
+        location.reload();
+    }
+
+    // ===== ANIMATE COUNT UPDATE =====
+    function updateCount(elementId, newValue) {
+        const element = document.getElementById(elementId);
+        const oldValue = parseInt(element.textContent) || 0;
+        
+        // Animate number change
+        let current = oldValue;
+        const increment = (newValue - oldValue) / 20;
+        const duration = 500;
+        const stepTime = duration / 20;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if ((increment > 0 && current >= newValue) || (increment < 0 && current <= newValue)) {
+                element.textContent = newValue;
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.round(current);
+            }
+        }, stepTime);
+        
+        // Visual feedback
+        element.style.transition = 'all 0.3s ease';
+        element.style.transform = 'scale(1.15)';
+        element.style.color = '#5c6bc0';
+        
+        setTimeout(() => {
+            element.style.transform = 'scale(1)';
+            element.style.color = '';
+        }, 300);
+    }
+
+    // ===== PREVENT FORM SUBMISSION ON ENTER =====
+    document.getElementById('monthFilter').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            applyFilter();
+        }
+    });
+</script>
+{% endblock %}

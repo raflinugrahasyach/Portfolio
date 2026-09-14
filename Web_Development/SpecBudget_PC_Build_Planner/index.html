@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SpecBudget – Plan your perfect PC build within budget. Calculate component costs and power consumption instantly.">
+  <title>SpecBudget – Smart PC Build Planner</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="mainNav">
+    <a href="index.html" class="nav-logo">Spec<span>Budget</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="btn-nav">Get Started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-video-wrap">
+      <!-- Background video for multimedia rubric requirement -->
+      <video autoplay muted loop playsinline id="heroBgVideo">
+        <source src="assets/bg-video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🇲🇾 Made for Malaysian PC Builders</div>
+      <h1 class="hero-title">
+        Build Your Dream PC<br>
+        <span class="accent-teal">Within Budget</span>,<br>
+        <span class="accent-yellow">Every Time.</span>
+      </h1>
+      <p class="hero-desc">
+        SpecBudget helps you pick the right components, calculate total costs in RM,
+        check power requirements, and stay on budget — all in one place.
+      </p>
+      <div class="hero-btns">
+        <a href="register.html" class="btn btn-primary btn-lg">🚀 Start Building Free</a>
+        <a href="#features" class="btn btn-secondary btn-lg">Learn More ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="text-center">
+      <span class="section-label">Why SpecBudget?</span>
+      <h2 class="section-title">Everything You Need to <span>Build Smart</span></h2>
+      <p class="section-sub">Stop guessing. Our tool gives you instant clarity on cost, power, and performance.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">💰</span>
+        <h3>Budget Tracking</h3>
+        <p>Set your budget in RM and see instantly whether your chosen build is within or over the limit — with the exact difference shown.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>PSU Safety Check</h3>
+        <p>Our calculator verifies whether your Power Supply can handle the load with the required 20% safety headroom to prevent system instability.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎮</span>
+        <h3>Performance Rating</h3>
+        <p>Get an instant performance tier estimate — from basic office builds all the way up to extreme enthusiast and workstation rigs.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🗂️</span>
+        <h3>60+ Components</h3>
+        <p>Choose from a wide database of CPUs, GPUs, RAM, Storage, and PSUs across Entry, Mid-Range, and High-End tiers with real Malaysian market prices.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3>Instant Results</h3>
+        <p>Results appear the moment you click Calculate — no waiting, no page reloads. Fast and responsive on any device.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <h3>Secure & Private</h3>
+        <p>Your account data stays right in your browser. No server, no tracking — just a secure local experience using browser storage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Component Showcase -->
+  <section class="specs-section" id="components">
+    <div class="text-center">
+      <span class="section-label">Components</span>
+      <h2 class="section-title">Pick From <span>60+ Real Parts</span></h2>
+      <p class="section-sub">All components sourced with realistic Malaysian market pricing (RM).</p>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <img src="assets/cpu.svg" alt="CPU" onerror="this.style.fontSize='3rem';this.outerHTML='<div style=\'font-size:3rem;margin-bottom:14px\'>🧠</div>'">
+        <h4>CPU</h4>
+      </div>
+      <div class="spec-card">
+        <img src="assets/gpu.svg" alt="GPU" onerror="this.style.fontSize='3rem';this.outerHTML='<div style=\'font-size:3rem;margin-bottom:14px\'>🎮</div>'">
+        <h4>GPU</h4>
+      </div>
+      <div class="spec-card">
+        <img src="assets/ram.svg" alt="RAM" onerror="this.style.fontSize='3rem';this.outerHTML='<div style=\'font-size:3rem;margin-bottom:14px\'>💾</div>'">
+        <h4>RAM</h4>
+      </div>
+      <div class="spec-card">
+        <img src="assets/storage.svg" alt="Storage" onerror="this.style.fontSize='3rem';this.outerHTML='<div style=\'font-size:3rem;margin-bottom:14px\'>💿</div>'">
+        <h4>Storage</h4>
+      </div>
+      <div class="spec-card">
+        <img src="assets/psu.svg" alt="PSU" onerror="this.style.fontSize='3rem';this.outerHTML='<div style=\'font-size:3rem;margin-bottom:14px\'>🔌</div>'">
+        <h4>PSU</h4>
+      </div>
+      <div class="spec-card">
+        <img src="assets/mobo.svg" alt="Overview" onerror="this.style.fontSize='3rem';this.outerHTML='<div style=\'font-size:3rem;margin-bottom:14px\'>📋</div>'">
+        <h4>Full Build</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="text-center">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-title">Three Steps to Your <span>Perfect Build</span></h2>
+      <p class="section-sub">Simple, fast, and designed for everyone — from beginners to enthusiasts.</p>
+    </div>
+    <div class="steps-wrap">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <h4>Create Account</h4>
+        <p>Register with your email and a secure password. Your data stays in your browser.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <h4>Select Components</h4>
+        <p>Pick your CPU, GPU, RAM, Storage, and PSU from our curated component list.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <h4>Set Your Budget</h4>
+        <p>Enter your budget in RM and hit Calculate to see a full breakdown instantly.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <h4>Review Results</h4>
+        <p>See total cost, budget status, power draw, PSU safety, and performance tier.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding: 40px 5% 90px;">
+    <div class="cta-strip">
+      <div>
+        <h2>Ready to Plan Your Build?</h2>
+        <p>Join thousands of Malaysian PC builders using SpecBudget today.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="register.html" class="btn btn-yellow btn-lg">🚀 Create Free Account</a>
+        <a href="login.html" class="btn btn-secondary btn-lg">Sign In</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">Spec<span>Budget</span></div>
+    <p>© 2025 SpecBudget. Built for Malaysian PC Builders 🇲🇾</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+      <a href="calculate.html">Calculator</a>
+    </nav>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+
+    // Navbar shrink on scroll
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('mainNav');
+      nav.style.padding = window.scrollY > 40 ? '10px 5%' : '18px 5%';
+    });
+  </script>
+</body>
+</html>

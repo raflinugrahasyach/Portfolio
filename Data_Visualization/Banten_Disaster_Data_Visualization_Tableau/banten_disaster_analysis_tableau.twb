@@ -1,0 +1,2657 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20261.26.0410.0924                               -->
+<workbook original-version='18.1' source-build='2026.1.1 (20261.26.0410.0924)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelTableType />
+    <SavingAnalyticObjects />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='Sheet1 (bencana_banten_21_23)' inline='true' name='federated.1k4qv3u10mitte1e8cqbx1xee2dn' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='bencana_banten_21_23' name='excel-direct.1e2cz7o17s9zo613g0mul1jeujyu'>
+            <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='D:/CV_Portofolio/Portfolio/Data_Visualization/Banten_Disaster_Data_Visualization_Tableau/bencana_banten_21_23.xlsx' interpretationMode='0' password='' server='' validate='no' />
+          </named-connection>
+        </named-connections>
+        <relation connection='excel-direct.1e2cz7o17s9zo613g0mul1jeujyu' name='Sheet1' table='[Sheet1$]' type='table'>
+          <columns gridOrigin='A1:Y28:no:A1:Y28:0' header='yes' outcome='2'>
+            <column datatype='string' name='Location' ordinal='0' />
+            <column datatype='real' name='Bencana Alam - Gempa Bumi' ordinal='1' />
+            <column datatype='string' name='Bencana Alam - Tsunami' ordinal='2' />
+            <column datatype='string' name='Bencana Alam - Gempa Bumi dan Tsunami' ordinal='3' />
+            <column datatype='real' name='Year' ordinal='4' />
+            <column datatype='real' name='Rumah Rusak Berat' ordinal='5' />
+            <column datatype='real' name='Rumah Rusak Sedang' ordinal='6' />
+            <column datatype='real' name='Rumah Rusak Ringan' ordinal='7' />
+            <column datatype='string' name='Korban Meninggal/Hilang' ordinal='8' />
+            <column datatype='string' name='Korban Luka-luka' ordinal='9' />
+            <column datatype='string' name='Korban Terdampak/Mengungsi' ordinal='10' />
+            <column datatype='string' name='Rumah Terendam' ordinal='11' />
+            <column datatype='string' name='Rumah Rusak Berat Akibat Tsunami' ordinal='12' />
+            <column datatype='string' name='Rumah Rusak Sedang Akibat Tsunami' ordinal='13' />
+            <column datatype='string' name='Rumah Rusak Ringan Akibat Tsunami' ordinal='14' />
+            <column datatype='string' name='Rumah Terendam Akibat Tsunami' ordinal='15' />
+            <column datatype='string' name='Korban Bencana Gempa Bumi - Meninggal dan Hilang' ordinal='16' />
+            <column datatype='real' name='Korban Bencana Gempa Bumi - Luka-luka' ordinal='17' />
+            <column datatype='real' name='Korban Bencana Gempa Bumi - Terdampak dan Mengungsi' ordinal='18' />
+            <column datatype='string' name='Korban Bencana Tsunami - Meninggal dan Hilang' ordinal='19' />
+            <column datatype='string' name='Korban Bencana Tsunami - Luka-luka' ordinal='20' />
+            <column datatype='string' name='Korban Bencana Tsunami - Terdampak dan Mengungsi' ordinal='21' />
+            <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang' ordinal='22' />
+            <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Luka-luka' ordinal='23' />
+            <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Terdampak dan Mengungsi' ordinal='24' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>0</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:Y28:no:A1:Y28:0&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>2</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Location</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Location]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Location</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Bencana Alam - Gempa Bumi</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Bencana Alam - Gempa Bumi]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Bencana Alam - Gempa Bumi</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Bencana Alam - Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Bencana Alam - Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Bencana Alam - Tsunami</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Bencana Alam - Gempa Bumi dan Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Bencana Alam - Gempa Bumi dan Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Bencana Alam - Gempa Bumi dan Tsunami</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Year</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Year]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Year</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Berat</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Rumah Rusak Berat]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Berat</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Sedang</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Rumah Rusak Sedang]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Sedang</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Ringan</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Rumah Rusak Ringan]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Ringan</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Meninggal/Hilang</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Meninggal/Hilang]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Meninggal/Hilang</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Luka-luka</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Luka-luka]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Luka-luka</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Terdampak/Mengungsi</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Terdampak/Mengungsi]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Terdampak/Mengungsi</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Terendam</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Rumah Terendam]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Terendam</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Berat Akibat Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Rumah Rusak Berat Akibat Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Berat Akibat Tsunami</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Sedang Akibat Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Rumah Rusak Sedang Akibat Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Sedang Akibat Tsunami</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Ringan Akibat Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Rumah Rusak Ringan Akibat Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Ringan Akibat Tsunami</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Terendam Akibat Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Rumah Terendam Akibat Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Terendam Akibat Tsunami</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi - Meninggal dan Hilang</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi - Meninggal dan Hilang]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi - Meninggal dan Hilang</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi - Luka-luka</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi - Luka-luka]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi - Luka-luka</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi - Terdampak dan Mengungsi</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi - Terdampak dan Mengungsi]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi - Terdampak dan Mengungsi</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Tsunami - Meninggal dan Hilang</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Tsunami - Meninggal dan Hilang]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Tsunami - Meninggal dan Hilang</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Tsunami - Luka-luka</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Tsunami - Luka-luka]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Tsunami - Luka-luka</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Tsunami - Terdampak dan Mengungsi</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Tsunami - Terdampak dan Mengungsi]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Tsunami - Terdampak dan Mengungsi</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi dan Tsunami - Luka-luka</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi dan Tsunami - Luka-luka]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi dan Tsunami - Luka-luka</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi dan Tsunami - Terdampak dan Mengungsi</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi dan Tsunami - Terdampak dan Mengungsi]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi dan Tsunami - Terdampak dan Mengungsi</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='real' name='[Year]' role='dimension' type='quantitative' />
+      <column caption='Sheet1' datatype='table' name='[__tableau_internal_object_id__].[Sheet1_72141D8AD3CB40AB9EFD89AC7885B300]' role='measure' type='quantitative' />
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='Sheet1' id='Sheet1_72141D8AD3CB40AB9EFD89AC7885B300'>
+            <properties context=''>
+              <relation connection='excel-direct.1e2cz7o17s9zo613g0mul1jeujyu' name='Sheet1' table='[Sheet1$]' type='table'>
+                <columns gridOrigin='A1:Y28:no:A1:Y28:0' header='yes' outcome='2'>
+                  <column datatype='string' name='Location' ordinal='0' />
+                  <column datatype='real' name='Bencana Alam - Gempa Bumi' ordinal='1' />
+                  <column datatype='string' name='Bencana Alam - Tsunami' ordinal='2' />
+                  <column datatype='string' name='Bencana Alam - Gempa Bumi dan Tsunami' ordinal='3' />
+                  <column datatype='real' name='Year' ordinal='4' />
+                  <column datatype='real' name='Rumah Rusak Berat' ordinal='5' />
+                  <column datatype='real' name='Rumah Rusak Sedang' ordinal='6' />
+                  <column datatype='real' name='Rumah Rusak Ringan' ordinal='7' />
+                  <column datatype='string' name='Korban Meninggal/Hilang' ordinal='8' />
+                  <column datatype='string' name='Korban Luka-luka' ordinal='9' />
+                  <column datatype='string' name='Korban Terdampak/Mengungsi' ordinal='10' />
+                  <column datatype='string' name='Rumah Terendam' ordinal='11' />
+                  <column datatype='string' name='Rumah Rusak Berat Akibat Tsunami' ordinal='12' />
+                  <column datatype='string' name='Rumah Rusak Sedang Akibat Tsunami' ordinal='13' />
+                  <column datatype='string' name='Rumah Rusak Ringan Akibat Tsunami' ordinal='14' />
+                  <column datatype='string' name='Rumah Terendam Akibat Tsunami' ordinal='15' />
+                  <column datatype='string' name='Korban Bencana Gempa Bumi - Meninggal dan Hilang' ordinal='16' />
+                  <column datatype='real' name='Korban Bencana Gempa Bumi - Luka-luka' ordinal='17' />
+                  <column datatype='real' name='Korban Bencana Gempa Bumi - Terdampak dan Mengungsi' ordinal='18' />
+                  <column datatype='string' name='Korban Bencana Tsunami - Meninggal dan Hilang' ordinal='19' />
+                  <column datatype='string' name='Korban Bencana Tsunami - Luka-luka' ordinal='20' />
+                  <column datatype='string' name='Korban Bencana Tsunami - Terdampak dan Mengungsi' ordinal='21' />
+                  <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang' ordinal='22' />
+                  <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Luka-luka' ordinal='23' />
+                  <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Terdampak dan Mengungsi' ordinal='24' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+    <datasource caption='Sheet1 (Data Joki Tableau - Copy)' inline='true' name='federated.1s0dfvb16n9ol21dt0b531vr4dfv' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='bencana_banten' name='excel-direct.0prsnh40xd8dhb1d8eg2t07es2rk'>
+            <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='D:/CV_Portofolio/Portfolio/Data_Visualization/Banten_Disaster_Data_Visualization_Tableau/bencana_banten.xlsx' interpretationMode='0' password='' server='' validate='no' />
+          </named-connection>
+        </named-connections>
+        <relation connection='excel-direct.0prsnh40xd8dhb1d8eg2t07es2rk' name='Sheet1' table='[Sheet1$]' type='table'>
+          <columns gridOrigin='A1:Y28:no:A1:Y28:0' header='yes' outcome='2'>
+            <column datatype='string' name='Location' ordinal='0' />
+            <column datatype='real' name='Bencana Alam - Gempa Bumi' ordinal='1' />
+            <column datatype='string' name='Bencana Alam - Tsunami' ordinal='2' />
+            <column datatype='string' name='Bencana Alam - Gempa Bumi dan Tsunami' ordinal='3' />
+            <column datatype='date' name='Year' ordinal='4' />
+            <column datatype='real' name='Rumah Rusak Berat' ordinal='5' />
+            <column datatype='real' name='Rumah Rusak Sedang' ordinal='6' />
+            <column datatype='real' name='Rumah Rusak Ringan' ordinal='7' />
+            <column datatype='string' name='Korban Meninggal/Hilang' ordinal='8' />
+            <column datatype='string' name='Korban Luka-luka' ordinal='9' />
+            <column datatype='string' name='Korban Terdampak/Mengungsi' ordinal='10' />
+            <column datatype='string' name='Rumah Terendam' ordinal='11' />
+            <column datatype='string' name='Rumah Rusak Berat Akibat Tsunami' ordinal='12' />
+            <column datatype='string' name='Rumah Rusak Sedang Akibat Tsunami' ordinal='13' />
+            <column datatype='string' name='Rumah Rusak Ringan Akibat Tsunami' ordinal='14' />
+            <column datatype='string' name='Rumah Terendam Akibat Tsunami' ordinal='15' />
+            <column datatype='string' name='Korban Bencana Gempa Bumi - Meninggal dan Hilang' ordinal='16' />
+            <column datatype='real' name='Korban Bencana Gempa Bumi - Luka-luka' ordinal='17' />
+            <column datatype='real' name='Korban Bencana Gempa Bumi - Terdampak dan Mengungsi' ordinal='18' />
+            <column datatype='string' name='Korban Bencana Tsunami - Meninggal dan Hilang' ordinal='19' />
+            <column datatype='string' name='Korban Bencana Tsunami - Luka-luka' ordinal='20' />
+            <column datatype='string' name='Korban Bencana Tsunami - Terdampak dan Mengungsi' ordinal='21' />
+            <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang' ordinal='22' />
+            <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Luka-luka' ordinal='23' />
+            <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Terdampak dan Mengungsi' ordinal='24' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>0</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:Y28:no:A1:Y28:0&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>2</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Location</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Location]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Location</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Bencana Alam - Gempa Bumi</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Bencana Alam - Gempa Bumi]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Bencana Alam - Gempa Bumi</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Bencana Alam - Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Bencana Alam - Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Bencana Alam - Tsunami</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Bencana Alam - Gempa Bumi dan Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Bencana Alam - Gempa Bumi dan Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Bencana Alam - Gempa Bumi dan Tsunami</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Year</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[Year]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Year</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;DATE&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Berat</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Rumah Rusak Berat]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Berat</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Sedang</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Rumah Rusak Sedang]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Sedang</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Ringan</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Rumah Rusak Ringan]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Ringan</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Meninggal/Hilang</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Meninggal/Hilang]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Meninggal/Hilang</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Luka-luka</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Luka-luka]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Luka-luka</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Terdampak/Mengungsi</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Terdampak/Mengungsi]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Terdampak/Mengungsi</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Terendam</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Rumah Terendam]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Terendam</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Berat Akibat Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Rumah Rusak Berat Akibat Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Berat Akibat Tsunami</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Sedang Akibat Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Rumah Rusak Sedang Akibat Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Sedang Akibat Tsunami</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Rusak Ringan Akibat Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Rumah Rusak Ringan Akibat Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Rusak Ringan Akibat Tsunami</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rumah Terendam Akibat Tsunami</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Rumah Terendam Akibat Tsunami]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Rumah Terendam Akibat Tsunami</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi - Meninggal dan Hilang</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi - Meninggal dan Hilang]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi - Meninggal dan Hilang</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi - Luka-luka</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi - Luka-luka]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi - Luka-luka</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi - Terdampak dan Mengungsi</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi - Terdampak dan Mengungsi]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi - Terdampak dan Mengungsi</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Tsunami - Meninggal dan Hilang</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Tsunami - Meninggal dan Hilang]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Tsunami - Meninggal dan Hilang</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Tsunami - Luka-luka</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Tsunami - Luka-luka]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Tsunami - Luka-luka</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Tsunami - Terdampak dan Mengungsi</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Tsunami - Terdampak dan Mengungsi]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Tsunami - Terdampak dan Mengungsi</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi dan Tsunami - Luka-luka</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi dan Tsunami - Luka-luka]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi dan Tsunami - Luka-luka</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Korban Bencana Gempa Bumi dan Tsunami - Terdampak dan Mengungsi</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Korban Bencana Gempa Bumi dan Tsunami - Terdampak dan Mengungsi]</local-name>
+            <parent-name>[Sheet1]</parent-name>
+            <remote-alias>Korban Bencana Gempa Bumi dan Tsunami - Terdampak dan Mengungsi</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[Sheet1_FF13D694B1B94393AC92B635052DBAAD]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[Location (clusters)]' parent-model='[AnalyticModel:{f9536174-1329-410a-add5-3f84d192f3cf}]' role='dimension' semantic-role='[City].[Name]' type='nominal'>
+        <calculation class='categorical-bin' column='[Location]' default='&quot;Not Clustered&quot;' new-bin='true'>
+          <bin default-name='false' value='&quot;Cluster 1&quot;'>
+            <value>&quot;Pandeglang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Cluster 2&quot;'>
+            <value>&quot;Banten&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Cluster 3&quot;'>
+            <value>&quot;Lebak&quot;</value>
+          </bin>
+        </calculation>
+      </column>
+      <column caption='Location1' datatype='string' name='[Location]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <column datatype='real' name='[Rumah Rusak Ringan]' role='measure' type='quantitative' />
+      <column datatype='real' name='[Rumah Rusak Sedang]' role='measure' type='quantitative' />
+      <column aggregation='Count' datatype='date' name='[Year]' role='dimension' type='quantitative' />
+      <column caption='Sheet1' datatype='table' name='[__tableau_internal_object_id__].[Sheet1_FF13D694B1B94393AC92B635052DBAAD]' role='measure' type='quantitative' />
+      <column-instance column='[Location]' derivation='None' name='[none:Location:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Rumah Rusak Ringan]' derivation='Sum' name='[sum:Rumah Rusak Ringan:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Rumah Rusak Sedang]' derivation='Sum' name='[sum:Rumah Rusak Sedang:qk]' pivot='key' type='quantitative' />
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Indonesia&quot;' />
+      </semantic-values>
+      <default-sorts>
+        <manual-sort column='[Location (clusters)]' direction='ASC'>
+          <dictionary>
+            <bucket>&quot;Cluster 1&quot;</bucket>
+            <bucket>&quot;Cluster 2&quot;</bucket>
+            <bucket>&quot;Cluster 3&quot;</bucket>
+            <bucket>&quot;Not Clustered&quot;</bucket>
+          </dictionary>
+        </manual-sort>
+      </default-sorts>
+      <analytic-model>
+        <name>
+          <field name='[AnalyticModel:{f9536174-1329-410a-add5-3f84d192f3cf}]' />
+        </name>
+        <analytic-model-specifications class='cluster-specifications'>
+          <analysis-fields>
+            <field name='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]' />
+            <field name='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Sedang:qk]' />
+          </analysis-fields>
+          <filter-fields />
+          <lod-fields>
+            <field name='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]' />
+          </lod-fields>
+          <number-of-desired-clusters>3</number-of-desired-clusters>
+          <is-dissagregate>false</is-dissagregate>
+        </analytic-model-specifications>
+        <result-fields />
+      </analytic-model>
+      <object-graph>
+        <objects>
+          <object caption='Sheet1' id='Sheet1_FF13D694B1B94393AC92B635052DBAAD'>
+            <properties context=''>
+              <relation connection='excel-direct.0prsnh40xd8dhb1d8eg2t07es2rk' name='Sheet1' table='[Sheet1$]' type='table'>
+                <columns gridOrigin='A1:Y28:no:A1:Y28:0' header='yes' outcome='2'>
+                  <column datatype='string' name='Location' ordinal='0' />
+                  <column datatype='real' name='Bencana Alam - Gempa Bumi' ordinal='1' />
+                  <column datatype='string' name='Bencana Alam - Tsunami' ordinal='2' />
+                  <column datatype='string' name='Bencana Alam - Gempa Bumi dan Tsunami' ordinal='3' />
+                  <column datatype='date' name='Year' ordinal='4' />
+                  <column datatype='real' name='Rumah Rusak Berat' ordinal='5' />
+                  <column datatype='real' name='Rumah Rusak Sedang' ordinal='6' />
+                  <column datatype='real' name='Rumah Rusak Ringan' ordinal='7' />
+                  <column datatype='string' name='Korban Meninggal/Hilang' ordinal='8' />
+                  <column datatype='string' name='Korban Luka-luka' ordinal='9' />
+                  <column datatype='string' name='Korban Terdampak/Mengungsi' ordinal='10' />
+                  <column datatype='string' name='Rumah Terendam' ordinal='11' />
+                  <column datatype='string' name='Rumah Rusak Berat Akibat Tsunami' ordinal='12' />
+                  <column datatype='string' name='Rumah Rusak Sedang Akibat Tsunami' ordinal='13' />
+                  <column datatype='string' name='Rumah Rusak Ringan Akibat Tsunami' ordinal='14' />
+                  <column datatype='string' name='Rumah Terendam Akibat Tsunami' ordinal='15' />
+                  <column datatype='string' name='Korban Bencana Gempa Bumi - Meninggal dan Hilang' ordinal='16' />
+                  <column datatype='real' name='Korban Bencana Gempa Bumi - Luka-luka' ordinal='17' />
+                  <column datatype='real' name='Korban Bencana Gempa Bumi - Terdampak dan Mengungsi' ordinal='18' />
+                  <column datatype='string' name='Korban Bencana Tsunami - Meninggal dan Hilang' ordinal='19' />
+                  <column datatype='string' name='Korban Bencana Tsunami - Luka-luka' ordinal='20' />
+                  <column datatype='string' name='Korban Bencana Tsunami - Terdampak dan Mengungsi' ordinal='21' />
+                  <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang' ordinal='22' />
+                  <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Luka-luka' ordinal='23' />
+                  <column datatype='string' name='Korban Bencana Gempa Bumi dan Tsunami - Terdampak dan Mengungsi' ordinal='24' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Kerusakan Rumah - Gempa'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Montserrat' fontsize='11'>Kerusakan Rumah</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (Data Joki Tableau - Copy)' name='federated.1s0dfvb16n9ol21dt0b531vr4dfv' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1s0dfvb16n9ol21dt0b531vr4dfv'>
+            <column caption='Location1' datatype='string' name='[Location]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+            <column datatype='real' name='[Rumah Rusak Berat]' role='measure' type='quantitative' />
+            <column datatype='real' name='[Rumah Rusak Ringan]' role='measure' type='quantitative' />
+            <column datatype='real' name='[Rumah Rusak Sedang]' role='measure' type='quantitative' />
+            <column-instance column='[Location]' derivation='None' name='[none:Location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Rumah Rusak Berat]' derivation='Sum' name='[sum:Rumah Rusak Berat:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Rumah Rusak Ringan]' derivation='Sum' name='[sum:Rumah Rusak Ringan:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Rumah Rusak Sedang]' derivation='Sum' name='[sum:Rumah Rusak Sedang:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <alphabetic-sort column='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]' direction='ASC' />
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]' field-type='quantitative' range-type='uniform' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Sedang:qk]' field-type='quantitative' range-type='uniform' scope='cols' type='space' />
+            <format attr='title' class='0' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]' scope='cols' value='Ringan' />
+            <format attr='title' class='0' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Sedang:qk]' scope='cols' value='Sedang' />
+            <format attr='title' class='0' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Berat:qk]' scope='cols' value='Berat' />
+          </style-rule>
+          <style-rule element='field-labels'>
+            <format attr='font-family' value='Montserrat' />
+            <format attr='font-size' value='8' />
+            <format attr='font-weight' value='bold' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='font-family' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]' value='Montserrat' />
+            <format attr='font-family' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Sedang:qk]' value='Montserrat' />
+            <format attr='font-family' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Berat:qk]' value='Montserrat' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]' value='8' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]' value='8' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Sedang:qk]' value='8' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Berat:qk]' value='8' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='omit-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]' value='false' />
+            <format attr='break-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]' value='false' />
+            <format attr='show-null-value-warning' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]' value='false' />
+            <format attr='omit-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Berat:qk]' value='false' />
+            <format attr='break-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Berat:qk]' value='false' />
+            <format attr='show-null-value-warning' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Berat:qk]' value='false' />
+            <format attr='omit-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Sedang:qk]' value='false' />
+            <format attr='break-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Sedang:qk]' value='false' />
+            <format attr='show-null-value-warning' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Sedang:qk]' value='false' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='font-family' value='Montserrat' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Berat:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#e15759' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#4e79a7' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Sedang:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#f28e2b' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]</rows>
+        <cols>([federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk] + ([federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Sedang:qk] + [federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Berat:qk]))</cols>
+      </table>
+      <simple-id uuid='{F8DEE7C9-C7DE-4353-8541-13B79C753006}' />
+    </worksheet>
+    <worksheet name='Korban - Gempa'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Montserrat' fontsize='11'>Jumlah Korban</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (Data Joki Tableau - Copy)' name='federated.1s0dfvb16n9ol21dt0b531vr4dfv' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1s0dfvb16n9ol21dt0b531vr4dfv'>
+            <column datatype='real' name='[Korban Bencana Gempa Bumi - Luka-luka]' role='measure' type='quantitative' />
+            <column datatype='real' name='[Korban Bencana Gempa Bumi - Terdampak dan Mengungsi]' role='measure' type='quantitative' />
+            <column caption='Location1' datatype='string' name='[Location]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+            <column-instance column='[Location]' derivation='None' name='[none:Location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Korban Bencana Gempa Bumi - Luka-luka]' derivation='Sum' name='[sum:Korban Bencana Gempa Bumi - Luka-luka:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Korban Bencana Gempa Bumi - Terdampak dan Mengungsi]' derivation='Sum' name='[sum:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <natural-sort column='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]' direction='ASC' />
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Luka-luka:qk]' scope='cols' value='Luka-luka' />
+            <format attr='title' class='0' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' scope='cols' value='Terdampak dan Mengungsi' />
+            <format attr='tick-color' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Luka-luka:qk]' value='#00000000' />
+            <format attr='tick-color' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' value='#00000000' />
+            <format attr='stroke-size' value='0' />
+            <format attr='tick-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='height' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]' value='19' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]' value='156' />
+          </style-rule>
+          <style-rule element='field-labels'>
+            <format attr='font-family' value='Montserrat' />
+            <format attr='font-size' value='8' />
+            <format attr='font-weight' value='bold' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='font-family' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]' value='Montserrat' />
+            <format attr='font-family' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Luka-luka:qk]' value='Montserrat' />
+            <format attr='font-family' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' value='Montserrat' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]' value='8' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Luka-luka:qk]' value='8' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' value='8' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='omit-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' value='false' />
+            <format attr='break-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' value='false' />
+            <format attr='show-null-value-warning' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' value='false' />
+            <format attr='omit-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Luka-luka:qk]' value='false' />
+            <format attr='break-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Luka-luka:qk]' value='false' />
+            <format attr='show-null-value-warning' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Luka-luka:qk]' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='line-pattern-only' scope='cols' value='solid' />
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#f28e2b' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='449' />
+                <format attr='maxwidth' value='449' />
+                <format attr='minheight' value='171' />
+                <format attr='maxheight' value='171' />
+                <format attr='aspect' value='0' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='4' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Luka-luka:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#4e79a7' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='5' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#f28e2b' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]</rows>
+        <cols>([federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Luka-luka:qk] + [federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk])</cols>
+      </table>
+      <simple-id uuid='{A9F99A9D-E695-4835-A6B6-F297A1041BE5}' />
+    </worksheet>
+    <worksheet name='Line Korban Luka'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Montserrat' fontsize='11'>Korban Luka-luka</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (Data Joki Tableau - Copy)' name='federated.1s0dfvb16n9ol21dt0b531vr4dfv' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1s0dfvb16n9ol21dt0b531vr4dfv'>
+            <column datatype='real' name='[Korban Bencana Gempa Bumi - Luka-luka]' role='measure' type='quantitative' />
+            <column aggregation='Count' datatype='date' name='[Year]' role='dimension' type='quantitative' />
+            <column-instance column='[Korban Bencana Gempa Bumi - Luka-luka]' derivation='Count' name='[cnt:Korban Bencana Gempa Bumi - Luka-luka:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Year]' derivation='Year-Trunc' name='[tyr:Year:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[cnt:Korban Bencana Gempa Bumi - Luka-luka:qk]' scope='rows' value='' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[cnt:Korban Bencana Gempa Bumi - Luka-luka:qk]' value='8' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:qk]' value='8' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='font-family' value='Montserrat' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[cnt:Korban Bencana Gempa Bumi - Luka-luka:qk]</rows>
+        <cols>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:qk]</cols>
+      </table>
+      <simple-id uuid='{A09F874E-EBC8-4E8F-8B4F-259CDC3F4BDC}' />
+    </worksheet>
+    <worksheet name='Line Korban Luka (2)'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Montserrat' fontsize='11'>Korban Meninggal dan Hilang</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (Data Joki Tableau - Copy)' name='federated.1s0dfvb16n9ol21dt0b531vr4dfv' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1s0dfvb16n9ol21dt0b531vr4dfv'>
+            <column datatype='string' name='[Korban Bencana Gempa Bumi - Meninggal dan Hilang]' role='dimension' type='nominal' />
+            <column aggregation='Count' datatype='date' name='[Year]' role='dimension' type='quantitative' />
+            <column-instance column='[Korban Bencana Gempa Bumi - Meninggal dan Hilang]' derivation='Count' name='[cnt:Korban Bencana Gempa Bumi - Meninggal dan Hilang:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Year]' derivation='Year-Trunc' name='[tyr:Year:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[cnt:Korban Bencana Gempa Bumi - Meninggal dan Hilang:qk]' scope='rows' value='' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:qk]' value='8' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[cnt:Korban Bencana Gempa Bumi - Meninggal dan Hilang:qk]' value='8' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='font-family' value='Montserrat' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='4' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[cnt:Korban Bencana Gempa Bumi - Meninggal dan Hilang:qk]</rows>
+        <cols>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:qk]</cols>
+      </table>
+      <simple-id uuid='{B87028D0-BE53-462A-9599-5E2769FB1D5F}' />
+    </worksheet>
+    <worksheet name='Line Korban Luka (3)'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Montserrat' fontsize='11'>Korban Terdampak dan Mengungsi</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (Data Joki Tableau - Copy)' name='federated.1s0dfvb16n9ol21dt0b531vr4dfv' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1s0dfvb16n9ol21dt0b531vr4dfv'>
+            <column datatype='real' name='[Korban Bencana Gempa Bumi - Terdampak dan Mengungsi]' role='measure' type='quantitative' />
+            <column aggregation='Count' datatype='date' name='[Year]' role='dimension' type='quantitative' />
+            <column-instance column='[Korban Bencana Gempa Bumi - Terdampak dan Mengungsi]' derivation='Count' name='[cnt:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Year]' derivation='Year-Trunc' name='[tyr:Year:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[cnt:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' scope='rows' value='' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:qk]' value='8' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[cnt:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]' value='8' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='font-family' value='Montserrat' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[cnt:Korban Bencana Gempa Bumi - Terdampak dan Mengungsi:qk]</rows>
+        <cols>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:qk]</cols>
+      </table>
+      <simple-id uuid='{49F44FDA-DF99-42A0-9774-E16F3EA41DDC}' />
+    </worksheet>
+    <worksheet name='Total Kejadian - Gempa'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Montserrat' fontsize='11'>Total Kejadian per Wilayah</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (Data Joki Tableau - Copy)' name='federated.1s0dfvb16n9ol21dt0b531vr4dfv' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1s0dfvb16n9ol21dt0b531vr4dfv'>
+            <column datatype='real' name='[Bencana Alam - Gempa Bumi]' role='measure' type='quantitative' />
+            <column caption='Location1' datatype='string' name='[Location]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+            <column-instance column='[Location]' derivation='None' name='[none:Location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Bencana Alam - Gempa Bumi]' derivation='Sum' name='[sum:Bencana Alam - Gempa Bumi:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='label'>
+            <format attr='font-family' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]' value='Montserrat' />
+            <format attr='font-family' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]' value='Montserrat' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='omit-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]' value='false' />
+            <format attr='break-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]' value='false' />
+            <format attr='show-null-value-warning' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]' value='false' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+            <format attr='font-family' value='Montserrat' />
+            <format attr='font-size' value='8' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]</rows>
+        <cols>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]</cols>
+      </table>
+      <simple-id uuid='{52D3374B-C882-4B78-8BA6-0EED47FBE8BC}' />
+    </worksheet>
+    <worksheet name='Total Kejadian Gempa by Year'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Montserrat' fontsize='11'>Total Kejadian per Tahun</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (Data Joki Tableau - Copy)' name='federated.1s0dfvb16n9ol21dt0b531vr4dfv' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1s0dfvb16n9ol21dt0b531vr4dfv'>
+            <column datatype='real' name='[Bencana Alam - Gempa Bumi]' role='measure' type='quantitative' />
+            <column aggregation='Count' datatype='date' name='[Year]' role='dimension' type='quantitative' />
+            <column-instance column='[Bencana Alam - Gempa Bumi]' derivation='Sum' name='[sum:Bencana Alam - Gempa Bumi:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Year]' derivation='Year-Trunc' name='[tyr:Year:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='label'>
+            <format attr='font-family' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]' value='Montserrat' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]' value='8' />
+            <format attr='font-family' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:ok]' value='Montserrat' />
+            <format attr='font-size' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:ok]' value='8' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='omit-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]' value='false' />
+            <format attr='break-on-special' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]' value='false' />
+            <format attr='show-null-value-warning' field='[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]' value='false' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Bencana Alam - Gempa Bumi:qk]</rows>
+        <cols>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:ok]</cols>
+      </table>
+      <simple-id uuid='{15E5841A-C1CB-42D5-B9BE-562987FCC2B1}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Gempa Bumi'>
+      <style />
+      <size maxheight='900' maxwidth='1600' minheight='900' minwidth='1600' preset-index='8' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='37333' id='10' name='Korban - Gempa' w='66813' x='500' y='8556'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='33000' id='15' name='Kerusakan Rumah - Gempa' w='66813' x='500' y='45889'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='20222' id='16' name='Total Kejadian - Gempa' w='66813' x='500' y='78889'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='21444' id='17' name='Line Korban Luka' w='32187' x='67313' y='8556'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone forceUpdate='true' h='7667' id='18' type-v2='text' w='99000' x='500' y='889'>
+            <formatted-text>
+              <run bold='true' fontalignment='1' fontcolor='#1b1b1b' fontname='Montserrat' fontsize='20'>GEMPA BUMI PROVINSI BANTEN</run>
+            </formatted-text>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='23000' id='19' name='Line Korban Luka (2)' w='32187' x='67313' y='30000'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='25889' id='20' name='Line Korban Luka (3)' w='32187' x='67313' y='53000'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='20222' id='31' name='Total Kejadian Gempa by Year' w='32187' x='67313' y='78889'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1650' minheight='1650' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='41' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98222' id='40' param='vert' type-v2='layout-flow' w='99000' x='500' y='889'>
+                <zone forceUpdate='true' h='7667' id='18' type-v2='text' w='99000' x='500' y='889'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1' fontcolor='#1b1b1b' fontname='Montserrat' fontsize='20'>GEMPA BUMI PROVINSI BANTEN</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='37333' id='10' is-fixed='true' name='Korban - Gempa' w='66813' x='500' y='8556'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='185' h='21444' id='17' is-fixed='true' name='Line Korban Luka' w='32187' x='67313' y='8556'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='199' h='23000' id='19' is-fixed='true' name='Line Korban Luka (2)' w='32187' x='67313' y='30000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='33000' id='15' is-fixed='true' name='Kerusakan Rumah - Gempa' w='66813' x='500' y='45889'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='225' h='25889' id='20' is-fixed='true' name='Line Korban Luka (3)' w='32187' x='67313' y='53000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='174' h='20222' id='16' is-fixed='true' name='Total Kejadian - Gempa' w='66813' x='500' y='78889'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='174' h='20222' id='31' is-fixed='true' name='Total Kejadian Gempa by Year' w='32187' x='67313' y='78889'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{F523EC28-22B4-4039-A8C8-077971D3379F}' />
+    </dashboard>
+  </dashboards>
+  <windows saved-dpi-scale-factor='1.5' source-height='75'>
+    <window class='worksheet' name='Kerusakan Rumah - Gempa'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <highlight>
+          <color-one-way>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Rumah Rusak Berat Akibat Tsunami:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Rumah Rusak Ringan Akibat Tsunami:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Rumah Rusak Sedang Akibat Tsunami:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{F96C82EE-C1CC-43B5-AFA3-0F85E8565FA1}' />
+    </window>
+    <window class='worksheet' name='Korban - Gempa'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <highlight>
+          <color-one-way>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Korban Bencana Gempa Bumi dan Tsunami - Meninggal dan Hilang:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Rumah Rusak Berat Akibat Tsunami:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Rumah Rusak Ringan Akibat Tsunami:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Rumah Rusak Sedang Akibat Tsunami:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[sum:Rumah Rusak Ringan:qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{0153469E-442D-4255-B699-DDE755844F53}' />
+    </window>
+    <window class='worksheet' name='Total Kejadian - Gempa'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <highlight>
+          <color-one-way>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Location:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{4106B4FC-9834-4B49-A5B9-3F00DE66BFDA}' />
+    </window>
+    <window class='worksheet' name='Total Kejadian Gempa by Year'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{EF97D79F-764E-4EBF-B1C1-E24D1652AE1A}' />
+    </window>
+    <window class='worksheet' name='Line Korban Luka'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Korban Bencana Tsunami - Luka-luka:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{4DFEA956-0F11-48DA-BD9D-6127B2DBE69A}' />
+    </window>
+    <window class='worksheet' name='Line Korban Luka (2)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Korban Bencana Tsunami - Luka-luka:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{5D4654F6-8216-4447-BAC0-DDE760EA89BB}' />
+    </window>
+    <window class='worksheet' name='Line Korban Luka (3)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[none:Korban Bencana Tsunami - Luka-luka:nk]</field>
+            <field>[federated.1s0dfvb16n9ol21dt0b531vr4dfv].[tyr:Year:qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{7C724323-2DA3-4014-9BCB-4536FB3E6E29}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Gempa Bumi'>
+      <viewpoints>
+        <viewpoint name='Kerusakan Rumah - Gempa'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Korban - Gempa' />
+        <viewpoint name='Line Korban Luka'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Line Korban Luka (2)'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Line Korban Luka (3)'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Total Kejadian - Gempa'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Total Kejadian Gempa by Year'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='10' />
+      <simple-id uuid='{9CC8EEC5-FF62-4B5B-A7E1-74EF5F962BCA}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Gempa Bumi' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAABYlAAAWJQFJUiTw
+      AAAgAElEQVR4nO2deXicV3nof7MvGo2W0WikGe2LJdux5SV24hjixCEhBC5wS6BcCs2FlhQI
+      tKUsoQkPUAoUWhLaclsolOWyXMJOCFlIgrPYjm28yda+jbbZpNn3/fvuH3IUy5ZjWRpbluf7
+      PY8fz3LOe97vnHl1znvOe86RiaIoIiFRpMhXWwEJidVEMgCJokYyAImiRjIAiaJGMgCJoka5
+      2gpIXBnSiQinTvWSFWV0btyMqawEgEjQhy8YWZBWodbSWGfF5Zgklcljqq6lzKBDzKUZn3IC
+      UNfYQiqyMG+VpRZjiW6BLI9zmgxKGmy1i+rlcU6RSOfm31fX2jDoNAD4vR5iaYHGOisAyVgE
+      96yPusYWMvEgs74gKm0J9VYLAF6Pk2gijbGiikqDholpJ1XVtRgNr+gU8nsJhKNn3slAlLjm
+      2f/ET8TNnW1iXX292FBfLza2dojf+9UfRFEUxR889GnRZrMt+LfltrtFURTFu2/bItpsNvGB
+      h74viqIoDh787XyakcD5eesamsWvff838+VmY25xa3uDWN+6SZwKphbV7Z433rRARkNzu/jd
+      M7p94WP3zOsiiqL40uM/mC/78R88JNpsNrG161YxmRdFUcyLb7tls2iz2cRPP/QDMeE8Jdps
+      NvEHj7+0oLxvfuFjC8qThkDXOBH3EB/4yP3sfOM99A+PMTrcx/+8eSMP//O/EM+fSVTSQL/d
+      jv3MvyNP/r/5/Eajkf0HDgBw4MAByozGhQWcyTvQ283bbtnCv/7zw6TOfPWHR3+OX1ZGuTzM
+      I7986oI67n37X2G32xkdGeStr13PN/7rO0t7uBIj6uAwx4ZmSMwMcnwkhNFYcvF85g7sdjv9
+      p09IQ6BrneefeoxQSs3ff/qTlGpVgIp/+dZPUSiVyF5OlEvw7NNPoz7ztr51PV3rWwHYdcMu
+      fv/cS7hieQ4cOMCNN+zi98/8/qwSZKjUarSqCspLdQjZLHN2JfLII4+w5w3voF0c4pEf/4iP
+      vu8tKGWcR3DWyaFDh0gnIoxNebjh5ncv7eH0Vm7oqGD//gPkTH50jV106qaXkFGGWq1GVV4p
+      GcC1TjgYBk0l1eVqIMW733gXruTcdw9//9dzLzJhvv7ww/MG8YZ3fmDeAKwbdtJ45Fmee+Zx
+      Dp+a5OMPvm+hASQc7N6+nVg4SCKV5S/v/zIlgGfoEPtOTPJvn/wTOhjhv355H88eG+POHa3n
+      6dh3ZB9/N3gUIZ/FF4xzy5/VLPn5du3axW/27ydfFeCGm3YRO7kEA/CPsn37diKhgGQA1zp1
+      DXWQ9jA0EWJ7Uynv+8jfMdh9mC/9n++TzAhzifRWnti3D91iAhR6dt3QxTcf+heShiZ2bDjH
+      mdWY+MrDD6ORyam2NdDZ2gjAz3/yE/LIeOjTH0ZFFhnwox/+mDt3fOa8Im5+6z18/6sPAvDY
+      9x/ig5/+BHfc9QY0Gi25XHg+XTIRBxQozhq479q1i3/87hcJGeO898G/4OmTP7t4pZTW8vDD
+      X0Ymk0sGcK2z+/VvocH0MA9+/G/58ucfpKGpkX1P/GphIiHNqRMn5odAKDRs6do4//VNu3bx
+      yDP/wfWvfxd6xTkFKHS8Zs+eBcYjZsI88ssnufkNd/PGW64HoPvg0/z0iV8w/fn7qS/XLBAR
+      9s1w4sQJREHgRM8gyJXo1Epam5oJ/ugP/OzJF7npugYee/JZ1BVNWEph4EzeDTtuwpidZWpG
+      yU037eDp/1xCpahL2LNnDyBNg17zqEtr+OGPfsAn7/8Ub7rjVgAqLfV85P5/ZFtzOaMASQ93
+      v/nNr2QqaWRk6OD82127dgH/ceb/i3Po979mMpjlq5/4FLvWzU1RvunmTfzqsbv4yS+f5JN/
+      8dYF6Y8++yve/OyvABnlpmr+7rP/RHuVlqY/u5dnXzzM373/XQDojCb+4cv/hv6sHkBRUsvO
+      zU0cDVbRWaO/1OpBJopSNGixEI9GyOShvMyIbBFn9GolEY+STGUpKy9HqSjsxKVkABJFjbQO
+      IFHUSAYgUdRIBiBR1EgGIFHUSAYgUdRIBiBR1JxnALlUjAmH56IZY2E/Hm9wwWdT9jFeXl1/
+      GfvYGALgn3Ey7fYuKivsn8Efji1dawmJAnGeAcTcQ/zrd39GMhEjmxeIRaNksxkSiTieGS/J
+      WIRQJM7Qsef42VMvkU0lmJp2khdEvvGVLzA5GyCaSM3L+8oXvohzapBP/P3nEJUahHwWh8NJ
+      XhRJJeIEAz4OPP0rnjl4Em8gBEA0HMA96wMEYrE4Xo+bTF44V1UJiRVz3kJYaPw4n/vhQTZo
+      3Wx/+/384ssP8Kf3vo2HvvU7TAQwd+ygp/s0H73nDo64dJQnRolEwuTMXcwc+im2Hbdz/Hgv
+      3/vGQwD81bvvxheN8I77vsif3rGNB//mPmzr1mP35umqjNE9I7Kxzkj3ZBRldJp33Xc/zz32
+      SwLOUe56/1/z9b//PLfc2oVP3chnPvKeVakkiWuXBT3Ab37zazLZLCrlXIiQIAjk83PR3Zu2
+      7Wb7xlZu3PNGakqUzG1iE/B6/YiiQCQSATTc/e73opUlFhTy6S/8M4/+328QjodwRXV88EMf
+      wjvZD8D/fNe9NJpLuHHP7dx+02YG+/uIxpOIMhmRSIyKmhbe92d/QiC4cLglIVEIFhhAPuTk
+      y//1S95y1+3suPE1PPHT/0ZvqcdgqKDeasZia6TCoKWtvR1jhRmbxYRSIUdtqMRSVUbLug7U
+      cmhvb5+Xue66HWzctIX33n0LzxwY4q17O/n857/I/3jn+7DYGikzaKgw12LvPsBLQwFuubEL
+      URQwWxvRa9R0rm9Dri6hrdF2xStH4tpHigWSKGqkaVCJokYyAImiZs0YQCKRuHgiCYlLZM0Y
+      wMuzURIShWTNGICExOVAMgCJokYyAImipqgMoFB+RCHkFJsuhZzEKKQ/eMWPRTly8AXUWi3a
+      8jpa6ypBrkIph3ROwDE1QWtbO6lUCp1WQzqdRqXWopDLePDb+5j0Ja+0utckj37pnQveF2ot
+      9NXkJA58nXzfDwtSTiG54gYQi0VRZdLkVBUcOdjPbCxPiTKLINdSqpHhmZ4kGA6h0ejRmRtQ
+      CBl237D9SqspUSRccQOQyeToDWVkYh48oRQ6nZay8jIAVDKBXF7EWmdElk1haunAPXz8Sqso
+      UURccQPYe8dd868FQUAuP8sNEUVEZIjiK583nTmNbO+2ZpL5lbks55W3inKuJl2uBIq6HahL
+      Swsiq5DPXDADyGazKBVyMjkRjXpOrCiKyM45giwU8KM3liMT5za4LHgQmQwZc73EuTTXliNX
+      aVeko8mowVpVtiIZALlcDqVyZVVXCBmFlHO5kRutKM4xAIW5A5nWeIEcF6aQz1ywmjt25BCZ
+      bJ5tN9yAfWSIGquVY909dDbbyMl1NDdY6T1xGFWZhZB9CktVBW63mwZbDaLKgF6RYzYQxWar
+      YWrKSUO9FafTSbWtiUqjnu88fnLFTvDb93Ty7tdvKdATS1wK2f5HSZ7jBOvu/h7K+h2rpNEc
+      Bes7HdMT5OQa3IM9mFvXMTAwRGVZCS6Xi57eHgDCyTwdrc2sX9eK2+0GUhw72sPAQD9DYxMQ
+      8/Hi8V7WtZrZ9/gTKCrqGOw7XSgVJSTOo2A9wIbN2zEbVLjCaUJ9PVRarEQD02QyUGqY6/ra
+      G6388dhxRJkSo9EIGFDKNMi1RnTyDPZRO3UbrqOnz05zxzpK9ToyxsKMGyUkFuOq2RAzPjJA
+      IJZj69ZNi3ZLp4amJB9gDesSdgxSIkYXfHY1+AAFM4B0PExGrice8lJdY0Uug1w6Tl5RguYs
+      XR0TI8yGs2zZvAH5JRzRHY1GKV3hLEKx/eiuJl0K0X5LKedSKdgQKOad4vBIgKaWFnKTo8wG
+      IqjzMfKldeSTUSrMNTTXWRgYHGZdxzq83lkcDieWWgvTI+OUmyuJxZJUmQwEfEFq6xtwuz0Y
+      yqroaK0vlJoSEgso6ASyWqMm4Asw7fHSWWfE4UugUigRZDAxbgfyrOvYSNTr4tDBw2Tkarxe
+      ByiNCJkEfuc4/dN+rmu18PxzR2jd3EXIf/FDuiQklkvBegBdeTVbTR3EvZPIFGUMucLcuHMr
+      Do8PpVxBfX09oCCVCJOSl3Dr3i7sdjvm6nrECjnpuA9LXQN6Uw1KXSk7rl/PwLGjpFa4+CUh
+      8WpcNU7wuQjZFP1DozS3dVKiVUo+wBrX5Wr1AS7ZAMbt41hMBtyhPK2Nc/e5zszMYLFY5tP4
+      PA76hsaottazvr2lIIp+7Scv4IutLAx2sZXp1ZJzLevyxffvPe+7wOEfop3et+Iyzi6nEFyy
+      GU2O9XPsNNz9pr0cOPASKq2O0KyHlrYmXA4PO2+5laqaOtTj06xvb6b31AkCsSxaeZpYPEu1
+      1UI2GiSrKEFAhtGoZmrIQUNrPV7PDIbyUoRUHFVJJelcDrlCw44tGxh3h6Rw6DWMEHGRdxxd
+      bTXO45IH2ApNKdd3WhkYGkFhMJNLJ6g0m5j1uAnOuknkzkosZnC5fHg8HvKosFXocXjD2GpM
+      OCanSWZzJBJxyqqshHwegrNuPNEsXR2NjA5PUNNQTyohnRotcfm45B5gc1cXZWVl+P1+KhJR
+      VE2bEVMx8gjYGlsxKERAxoYNG0CmoaOjGaW+HINOjUoOmlk3R0/0sHnX65DFZrE0NJJP58gm
+      K7E2tlJSWo6yVMNrd8s4fvQYJmsDMBcMt9Ix5LU87FhtGReTIzdaUdQVJu6nkEOgK+4Ei6JI
+      Op1Bq9VcNG0qlUKj1SJDWghb67pcrU7wgiFQd/cpxod6mPQESKeS5AWR4eER8rksyVQaAI9j
+      kscee4wR+xSZdJJMNoeQz5FMpRGFPKlUGlEUSSYSiKJIKpUmdya/IAikUim0WjXJVBJBEACB
+      F/c9ywvP7SOWEebyxb10jzjRnvnxS0hcLhaYkddpxyEv5dYbKjh8chJyMZLJDEGvG384yR13
+      vZ6aukaqpl20N9fw3L6XyMvlCKkIedSUl+vRCElmkhpqayrR5hP0OpLUlssIh5PodQr0CoFQ
+      vgRbTSmhqIzd2zuQK+SotEZGTx8DrR5tPkFSXr1adSJRRCwwAGvTOlrqzAyMu1DLsugrzJRo
+      owi5FFq1GmFueI/RaETMpJCpNagVCkzVJlSAoBDwTgcor6wll8mgKTWyfn0D8ZkRtGo1ZdXV
+      tJp0jM2mSCRCCIIR5HLkciViLklJZQ3haBRNqRGjIDATCEAWLJbK1akdiWuegvoAjskxPN4Q
+      m7ZuQ6O48OAl7HUx5nBT37Iec5l+SbIlH2Bt63K1+gAF3UtX19hKXePF05WZrTTKNZjO+vH7
+      /X5MJtNZqbL4/QlMppWHL0tIXIhV20w6PDzMrl27mLIP4wuniIe9GIzlWGpq8cx4qTAbmBpy
+      07y+kwZr1WqpKXGNs+qRZsPDI+QTQaKCji2bWug7NTgfPTrUcxq5ZmWbYCQkXo1V6wE0CoFj
+      p/ro7OzEG4yz0aanu2eCjZvbmfWHqa9vpa1pE9mID0yG1VJT4hrnqo0GPRfJCV7bulytTnBB
+      h0B+l53Dx05yrLv3gmnGx+3nfWYfHy+kGhISS6agQ6Cof4YMRnxuJ3a9gmmH55zozjyxSAiX
+      041KX4o8G8MXSVFm0EE2tUj6V6JBJSQuBwV3gquqa7jzjtvxnIkOfTm6c2R4gvrWZtRiCqc3
+      TDKRIJXNo1bOrRecm16KBpW4EhTUB0jFwqApRauS4/M4iaVzlJSWYyrVEM+IzLqcmCwWkhE/
+      Cn0FU4MnGZuJc+fe15BNxhak93pnON49gMnawA1bNkg+wBrX5Wr1AVbVCc5nMwgyBSqlYtHv
+      pWjQa0eXq9UArvg06KEX95ETZazfvpsSRQ6tVkUmlUKuVJLJ5tBq1KTTabQ6HaIIoiAgWwOn
+      H0usTa64ARiNpfjCCXzjPewbdWKuLiPsjtHcYqGvdwBzQx0WvQJXME91XQ2RUJRbdu+80mpK
+      FAlX+E9rnpnZIAY1+MJprDYrtTVmLLYGZmfcVJRqSaGls7UBERmpRLJg1/dISCzGFe4BFNx6
+      ++0IoohCLn/looNWEIWNc/cDnNnqtmenjoFxJyar7cqqKFFUXBYDyKRTpDNZZHIFhpKF4c4y
+      mQzFmR/52ZdjnDvO11dY2F5hQeLaQAg7yYWiF0+4FFlCnpx88YkTmaYURXXnkmVdFgNIJWI8
+      v/8ltmzfSdDrJifXYVALzAQTtNZbmJh2Ya2rxzU1QV1zC67xcQwVFYSiCeosFTimXbS0tzM+
+      ZqfaaqOqQgqJXussdkHG5UBRtwP927+35PSXxQcwVlRhNptpsFnmL8gYGLajiPl54WQ/TWYt
+      z/z+WXzJHP39J5nxpQh63Uz3n+bgyT7qq0v47aPPUN3SwvDQ8OVQUUICuIw+gNFoBDEzf0GG
+      yVSGQQV1pQp6BkapttWjRqDSVE1GpyAdn8FQZkRebkKn09O2rpHR3j7S2cJdiiwhcS5XfCHM
+      45jE5fGybtNWDJrFx3EAybCX/jEHtfUtWM1lBVlIyefzKBQXLvNKyik2XRa7IGO5iKKw6EWK
+      cOk+QFGFQ0usHldr+0lLrBJFzdoxACFL94njTDiWd2FG2OviZPcJPP6VdcNCLkX/4OiKZKQi
+      Po4fP4bbv7JI18G+0/QOrGCSQBTo7j5FPh3l+PHjuLyhZYkJeiaYcAUZHezjeHcPwgXSjQ6c
+      Xnb7AZCLc/ToSWYDYfpPn2TEPrVsUalYkIGRibVjAGHXKJrqNmack8vKr9CW0lxbzoxveY38
+      Mr09/URjkRXJ6OvrBwTyuZU5+G6XE6fLvez8kaAfbyDE5OAADRu2MW0fWpackNeFP5rCYmsg
+      EwmSWzRVDn8ks+z2A4jMOvHFkkR9k0TFMgLe5T97IBwi6POvHQNQ6/SkEzHywvJclkzMz4kR
+      H+tbapevRC5BIpPHM+NdvgxApVDR3N6KY8qxAil51PpyDNrlT+QZK80YdGp0Og2xSBhBtjxZ
+      NqsVgNH+k1TYWi4wtShHFLLLbj8AVAZ2bu/C45lFzCbJ5y/U11wcq82GjDXmBId8M1TUNGDQ
+      qS85f8g/y4wviLnGRmXZyjbZr9ShE4UsIyPjNLe1o3qVA8QuhtfjICPTYrMs/9iYcDhMmbEU
+      ++go1uY2tMpL/5soZFPEszKCnimSWTltHa2cOxcUjUbJJGNoSk3Laj8AUcwzOjxCXXM7Ya8D
+      dWkVlcaSZckCgXA4vrYM4GqcRZBYGldr+62ZIZCExOVAMoArQDw4QyS10OF1u8934CI+N/HM
+      3OtUxEfw5TcSKyKfivLiC8/z/AsvEEpkF3y3agdjFROz9l6Stt1sKIswOJtFlgwyPNBDU2cX
+      iaCbpKDmltfciGPoBC5lK3s2WzhycD9RXR1drWZGRiepqq1nc2dhLhwsNhTaUjY3lNKXtBFy
+      DnNyapb6uhqmgwmpB7iipEOMOXyMjIwwdOowCUFJOBihf6CfE4deYNLtZ9I+RjYZZNTp58CB
+      Q5DPkBXlDPRe+KwliaVz/PhJVCQ58ccjNDXUSE7wlSDosvPS6VGaW5rxTk+irbBQYdCSzaYI
+      +byk0HDbnt14p4YJZ5U4nFNUGIxUWm3MTI4TTQuUV5jYuqljtR9l2ax2+6WCLmZzRuRRJ8OT
+      bprqLFTUd0oGIHFluFrbTxoCSRQ1a6YHKORZMBJXnqu1/daMAUhIXA6kIZBEUSMZgERRIxmA
+      RFEjGYBEUSMZgERRIxmARFEjGYBEUSMZgERRIxmARFEjGYBEUSMZgERRIxmARFGzwABmXFNE
+      ExlSsTCDoxMrEJtjfMmndgkM9fXQ09PDjD98ySU5JkZJLX4Sk4TERVlgAI/+6BucGJzgwfs/
+      xkw4jSjkcTqcCCIk4jECPj+xeJx0NkciHiOXFwn6ZvEF53640XAA96wPiPEvX/kGmXSKeDJF
+      IhrG6Z5FBGKxGEHfLMn0y7/aDJ994AEOHTrE3//NX9E3FSAai5PPZYknUsRjMcIhP7FkmhmP
+      m7wgkk0lmJp2khdEvvuv/8ioK0gknryyNSdxTXBegPa/f+kBWre/jj3bO/ja5z+FvrYBb1yP
+      MdLNjGilzaKketOdjP3hW3TtvZvvfP8Ruta38d6/vIfvfPPbBJyj3PX+vyYd8/OpT3yCv37g
+      Mzz6w+8SDjjpuuv9PPbNz3LTzbdwfCLFf/zTJ+fLFYQ8Gr2REnmQT376x3z23tv41rN2sD9P
+      +frt7HtyPzdta6as81Z0wX4ikTA5cxcAzzzxG44fP8mPvv3vV67mJK4JzvMB7v6LvyUzdpDu
+      sRn6R+yUlpZRVT53+ta77v0I1SVKBEEgn89jtDSxvdNGz6njDI+ME40nEWUyIpEYPo+LSEak
+      XCvDH40jiDIikQjy0ired++fIwaC82Vqy8zs3NiIoK/BZiqZlz+Hinfc8y4qyyy8/Y23EQ4F
+      8Xr9iKJAJDJ3Rudb3/leSlTSOEji0lnQA9TWt9C0YQM3NdzHj594kne/80946fQ4LV27Ucra
+      MGgUbNy2k//+2a/RK8pR5BLEUnnaO9ZjrjAiigJmayN6jZpb7noLt91Yz/4/nkYuilSarZTp
+      NXR2dIJMSfu6l4/4kLN+w0a2vfYu7hgb49BAkNbKLL/b302jrRPk61DLlXR0tqE1VFBfK2fW
+      L0dtqMRSXoZW3olWCeva21eh+iTWOtKOMImiRpoGlShqJAOQKGrWlAEkEonVVkHiGmNNGcAr
+      M0MSEoVhTRmAhEShkQxAoqiRDECiqCk6AyiUH1EIOZdTl8UmDNLpdEHKu1CZa1HeqhzWeOTg
+      C6i1WrTldbTWVYJchVIO6ZyAY2qC1rZ2UqkUOq2GdDqNSq1FIZfx4Lf3MekrnqC3L/zlXja1
+      VF803WJrmYv9ADL/uZ1r/c4Z3d3fQ1m/Y9E6WYxVMYBYLIoqkyanquDIwX5mY3lKlFkEuZZS
+      jQzP9CTBcAiNRo/O3IBCyLD7hu2roarENc6qGIBMJkdvKCMT8+AJpdDptJSVlwGgkgnk8iLW
+      OiOybApTSwfu4eOroaZEEbAqBrD3jrvmXwuCgFx+lisiiojIEMVXPm/atWsu37ZmkvmVuS3n
+      lbeKci4mo7piuXfgLo5ix70oFIVp8kLVY6HlyY3WS0pfUAPIZrMoFXIyORGNek60KIrIZAsv
+      gw4F/OiN5cjEuZu+Fzy4TDZ3g7fs/Mpori1HrtJesPzqihIsF/nRFOqc+kLIueJn5tduQ6HW
+      LPhIYe5ApjVesqhC675a9wcUtMRjRw6RyebZdsMN2EeGqLFaOdbdQ2ezjZxcR3ODld4Th1GV
+      WQjZp7BUVeB2u2mw1SCqDOgVOWYDUWy2GqamnDTUW3E6nVTbmqg06vnO4ydf1Ql+523X8b9u
+      u66Qj3RNkf/tBzi39l52GouVgk6DOqYnyMk1uAd7MLeuY2BgiMqyElwuFz29PQCEk3k6WptZ
+      v671zF25KY4d7WFgoJ+hsQmI+XjxeC/rWs3se/wJFBV1DPadLqSaEhLzFLQH2LB5O2aDClc4
+      Taivh0qLlWhgmkwGSg1zF6S1N1r547HjiDIlRqMRMKCUaZBrjejkGeyjduo2XEdPn53mjnWU
+      6nVkjFff5WoS1wZX1YaY8ZEBArEcW7duWrRrOjU0JfkAS5Sz2K2MibEDqIvEB1iqvIL2AOl4
+      mIxcTzzkpbrGilwGuXScvKIEzVklOSZGmA1n2bJ5A/Kz/OPm9vU0v4r8FmvFVXnV5lpBVdGA
+      srJhtdW4qiioAcS8UxweCdDU0kJucpTZQAR1Pka+tI58MkqFuYbmOgsDg8Os61iH1zuLw+HE
+      UmthemSccnMlsViSKpOBgC9IbX0DbrcHQ1kVHa31hVS1KJHFZ0AygAUUPBZIrVET8AWY9njp
+      rDPi8CVQKZQIMpgYtwN51nVsJOp1cejgYTJyNV6vA5RGhEwCv3Oc/mk/17VaeP65I7Ru7iLk
+      9xRaTQkJoMA9gK68mq2mDuLeSWSKMoZcYW7cuRWHx4dSrqC+vh5QkEqESclLuHVvF3a7HXN1
+      PWKFnHTch6WuAb2pBqWulB3Xr2fg2FFSK1z8kpC4EFeVE3wuQjZF/9AozW2dlGiVizp2l0pR
+      O8GJBHq9fsXlXajMtShvWQYwbh/HYjLgDuVpbawBYGZmBovFMp/G53HQNzRGtbWe9e0tFxJ1
+      SXztJy/gi60sbHaxlenVklNIXW7b3sJt21+ZQljMAKKPvKdgoRCF0n015Gn23I+iuhNY5hBo
+      cqyfY6fh7jft5cCBl1BpdYRmPbS0NeFyeNh5y61U1dShHp9mfXszvadOEIhl0crTxOJZqq0W
+      stEgWUUJAjKMRjVTQw4aWuvxemYwlJcipOKoSipJ53LIFRp2bNnAuDtUVOHQl8KmVsvFE7lP
+      Iu2qBjEdnX+9rMG1QlPK9Z1WBoZGUBjM5NIJKs0mZj1ugrNuEmefUihmcLl8eDwe8qiwVehx
+      eMPYakw4JqdJZnMkEnHKqqyEfB6Cs2480SxdHY2MDk9Q01BPKhFb6TNLSCzKsnqAzV1dlJWV
+      4ff7qUhEUTVtRkzFyCNga2zFoBABGRs2bACZho6OZpT6cgw6NSo5aGbdHD3Rw+Zdr0MWm8XS
+      0Eg+nSObrMTa2EpJaTnKUg2v3S3j+NFjmKxzU3fNteUr9gGu1SFQdfkSIkdrt0pDIECmeeU3
+      tCpOsCiKpNMZtFrNRdOmUik0Wi0yFh/XXirF7ASn02k0movX+XLLXIvyzhsCdXefYrS/G4c3
+      RDqZJC+IDA+PkMtmSKbnNtS5puw89thjjE46yKSTZLI5hHyOZDqDKORJptKIokgykUAURVKp
+      9Hx+QRBIpVJotWqSqSSCIAACL+57lhee20csI5BMJMiEnPRPeNGe+fFLrBzFrBRUeC7nmYhn
+      aoS8porXVgU52htDSIdJJNL4Z10EYhneeOftWBtamHTO0NZQzXP7XiIvl5NLhhwe/koAAA3N
+      SURBVBHkWkxGLbJMlJi8kspKA/JEEHtYhVmXJhTLYFCJqMiT0ZowV2oJRWXs3t6BXCFHpTUy
+      evoYaPXIE0GyZW2rUScSRcR5BlDfup7G2gpGprwohCzGymr0mjC5TBK1Wo3AXLdhNBoRMylk
+      ag1qhYLaahMAKlke54SX8oZKcpkYxtIyNtTaCEz1oVarMVmqqDWqcMdkJBJeBMEIcjlyuRIx
+      l6SksoZwNIqxtAyVPI03FEZI57FYKq9w1UgUAwX3AabHR5gJxOjauhXVq8wxhb0uxhxu6lvW
+      Yy5b2uKM5AMsXc5idZWK+NAaq1Zc3oXKXIvyCr4Hrb65nfpXC+k8Q5nZSqNcg+msH7/f78dk
+      Mp2VKovfn8BkKiu0mkWJIicdLnwuq7Ip/mWGh4fZtWsXU/ZhfOEU8bAXg7EcS00tnhkvFWYD
+      U0Numtd30mAtzF+uYkaKBj2fqyLKbHh4hHwiSFTQsWVTC32nBuejR4d6TiPXXHgTjITESljV
+      HkCjEDh2qo/Ozk68wTgbbXq6eybYuLmdWX+Y+vpW2po2kY34wGRYTVUlrlGu6mjQc5Gc4KXL
+      kaJBl7kQtlL8LjuHj53kWHfvBdOMj9vP+8w+Pl5oVSTOkO37DYmfv3e11bgqKfgQKOqfIYMR
+      n9uJXa9g2uE5J7ozTywSwuV0o9KXIs/G8EVSlBl0kE0tkv6VaFCJ5SFEXOQdR1ErFKutylXH
+      ZXGCq6pruPOO2/GciQ59ObpzZHiC+tZm1GIKpzdMMpEglc2jVs4FO5ybXooGLSzSFVPnU/Ae
+      oKZ5A2hKUSpkrFvXsSC68867LMy6nGy6fjdtET8KfQVTgydxhhLcuXcb2WTsVaNBJZaH3GhF
+      UVe8p7+9GqvuBOezGQSZApVy8e5ZigZdnhwpGnSVnOClcOjFfex/4Tl8sQyZXG7uQN1Uilwu
+      RyKZQhAEkskkIiCKIArCaqh5zSFFg57PqqwDGI2l+MIJfOM97Bt1Yq4uI+yO0dxioa93AHND
+      HRa9AlcwT3VdDZFQlFt271wNVSWucVahB8gzMxvEoAZfOI3VZqW2xozF1sDsjJuKUi0ptHS2
+      NiAiI5VILvm6GwmJS2UVegAFt95+O4IoopDLX7kYoRVEYePc/QBntrLt2aljYNyJyWq78mpe
+      g4glS9g4X2RcNgPIpFOkM1lkcgWGkoWrjzKZDMWZH/nZl2PIzrkhRF9hYXuF1GiFIhucmguI
+      g6K+E+BsLpsBpBIxnt//Elu27yTodZOT6zCoBWaCCVrrLUxMu7DW1eOamqCuuQXX+DiGigpC
+      0QR1lgoc0y5a2tsZH7NTbbVRVSGFRK+Usy/IKP3ohVfqi4nL5gMYK6owm8002CzzF2QMDNtR
+      xPy8cLKfJrOWZ37/LL5kjv7+k8z4UgS9bqb7T3PwZB/11SX89tFnqG5pYXho+HKpKVHkXFYf
+      wGg0gpiZvyDDZCrDoIK6UgU9A6NU2+pRI1BpqiajU5COz2AoMyIvN6HT6Wlb18hobx/prLSC
+      KXF5WJWFMI9jEpfHy7pNWzFoLhyfkgx76R9zUFvfgtVcVpCFsHw+j6IAMTGFkHM5dbnYBRkr
+      9QEKpftqy1v1leBLQTKApctZrK4K+SO7VgzgqtgRdiUp1N22BbnT9grrUsh7fQspazXlKT73
+      uc99rqAlX0YyqTgD/f2k8nLKjUvfIeZxTDA57USlgP6BITR6A0N9vWRRUVa6tMuoR3tOojbV
+      MNrbTSieJRqYYdLtQ55LMDhsx2SpQSl/9SO88pkEfYN2VEKKkclp9Fo1vb19oNIxOTJAJJWn
+      svzV7+vKJcOc7BkgnQP35OgFdclnMwvifoYHepkNRDFXLf94mVjAQ+/QCIJMhX14kFRezozD
+      ji8Up8pUsSyZvb29GNTQ07+8djmbseEBJl1exHSUkXEnerVI38AQ+nIzWtXivcGa6gHCrlE0
+      1W3MOCcvKd/U9DSxSITu/lG2bNvA4acepaxhA+7p8zfmLEo+zfSUk3TcR1QsI+B1M+MPoU6G
+      OTXuZkODkaFJ30XF+P0hgqEAk1PTpGIRhnt6aNiwjYnu50hpqvHPOC8qQ0DBurZmZib7L0GX
+      HMFIimjIv7TnvQAyVQmt9WZGTh050w5DhKIi4YB3WfJcE8NMuv30DY0vr13OYXCwn0wmw7Tb
+      S4NR4KnDQ2zb0sZQ39gF86wpA1Dr9KQTMfLCpbktltp6mi0lBCNJwqEwunITyVgEQVjioYsK
+      DdYaEyg1iNkk+byAKAgkcwJauUg4mkCnu/jG/epaKyo5VFlqWd9sYSYYIxYJg7qUfDqBkL94
+      0J+Yz3Dg8Ak2dXVdgi5yBDFPfgnyX41cKsTR3mm2bO440w4KBDGLsMx9BoFwlFwiRD6XX167
+      nIOxohoxHScvikQTGcr1SsLBCEq97oJ51pwTHPLNUFHTgEGnXnK+ZCyEYzZCW2MtI2OTtLa3
+      4hgfpcraTIl2aTPBiWgYVUkZfvck6tIqVPkk4ZSIpULHpDtAW/PS9iyEw2F0agXjjlnWtTUx
+      PjqKtbmNgHsSfUUN5YYLN9acHiGmXTOUVZohE72gLuc6wf5ZFzmFHoupfEl6LkYk4MXtDWCy
+      WEkG59ohFfYiqksxV176Vasw16YGvXbZ7XI2Id8M8ZwCk0GFOxCj0VrFqN1BW3srFxqdrjkD
+      kK5JXRpSXS2NNTUEkpAoNJIBLBGHfZgXX3yRIbsDt9u92upcxYgcfel5TvQMnffN1Vhvq3ow
+      1lriVO8gN71mN7974mm2b9/CyMBp0nIDTeYSJh1Oaurb8HudmKuqmXTOUGtrYMvG9tVW+4qT
+      j7roHg2wfbOJKfsg9gkX7R1tDA1P4A34MBtLsNrqGJl0Yqm1IUsGmI1meeMde1dFX6kHWCJi
+      LkVf9xFKLU2Mj9uJJHNk4yFGp92ss5RgdweR5+McP/wSpbYNOCdGVlvlVSGVgZtfcz19x4/y
+      3JETaBQ5Hv/NM2zavZsSeYZkJk3v8cPISm34nGP4wkmUYmbV9JV6gCXScd0W2tet4/SpU2j0
+      JmSiDBki0cAMB/54AuvWvShyeTZvqaGiupSUqvj++gPoy804jz+HrX096xurGLA7eOs7/gd9
+      B/dja+kk4A3SsNmGpqIaWUrF9MQIvaMuXr9K+kqzQCvE557C7omwY+t1V9VVTldjXS3G2GAP
+      OXU5HS31q1K+ZADXKFJdLY01ZQCFPjvmWkaqq6WxpgxAQqLQSLNAEkWNZAASRY1kABJFzQID
+      +Oo/fJw3v+F23v/Bj9A94lmQ8Fv//e2FOVMe7r3vMy+/4d577yPmd/BX77+XwanZsxJm+D9f
+      /69FC//1dx7muRN9PPzVxb9fDl/65AcZ86f56Hvfyk+ePMyP/+OL/PQXj/LjR//AZ+67F09q
+      CUIWPJvEtcyCaYKPf/arJP72Ht7zua9TmZ7gkx//GIIo553vege/+PnP6dhwHc/89jekUmk+
+      8Lf3kc1l5/Mmw14++uGP8M5PPESHtZQvfuYBEnkZ93zwwwSDQQaP7uMHv32BrMLAR96xh699
+      55ekgw7etuV1BAJBju77Nb99oQeFoYo7u8w89Uc7XucED3z5X7GVaXjsR9/g2HiISDjC/R/7
+      EP/+7/+JTKHmw/f+GZ/50r/x2tvfxJ+/7Q1ct7GD4weeJq2p5uSxY+CZ5D037eVAn49sLkt0
+      xs7XvvHfpFMp3vbm23EkDZiSI2gatvLMrx6ZfzbP1CBf+Myn6Nj9Ft7++l1XvGEkrgwXHAL9
+      8YWn2Pq6t/Pnb97Ni6dd1Nps3NTVQWNTE0I6zKRz4e6iRCjI7r238cQTTxKY6KHPFaWh1kTv
+      wDButweVrpQGm42hoX6OvPgcd77jL7n5+o2AgMvpQVdaic1Wy1D/KeKRIB3X72FnRzUTziAA
+      oYCXvW95D102NT/68c+IilpMBgXDIxNoqlv587e9AYCtW7bwyP/9Pjfc9W5ys91E5RUYhATe
+      QAgAUaakqbGemG+SipYuDv7hKf5w4CRdnY0Lnq2ipoUP3fM2TpzquUxVL3E1cEED2LT9Rl78
+      3SN87xdPc/NN11OmyPC7J5/m8MkBlEolqXRyQfoyawv/+/0fQuc+yjGPSLUO3LMB1rU1AXD6
+      6H6cgTgqIU/Htut59MffZP/xvvn8R/c/QyCeRciDCKhUKuTyhfs4f/vT7/HSgIc3v/lOSEYI
+      RLM0NVQvmO+uW7+F+IyLG3ZuZ0N9NfUbti6Q4Rrvp2d4CpVSRYYS1psyaBu2kfNNLXg2uVxW
+      8I3aElch4quQz+fEXC4/9zqXE/N5Qcxls6LwapnOIOTzYjaXE7sPPiW+78MPiKIoiNlsbv77
+      XC63UI4giNlc7lwx8/zg3/5B3N/rFHP5/Cu6nXl9qWSzWVEURdE7PSL+9Qf+Qjw27J7TaYnP
+      JnHtcNkXwqLhAKj0lOpXdtl1KhFHodZe8CaZ5ZBNJQjG01Qv80QDibWPtBIsUdQUbJArSNcY
+      SaxBLhgt1X30JZJ5OY2tHVjNFUyO9jMy4QKFjltv3c34YC+RcITqti7qTCWreovLTDDObDBe
+      UJnNteWXdPKExNrkggbgcjpQGyrJ5ubOfKmzWRmemKH0zGUXbZ3XcfqPB1CrFOTzeQRBWDUj
+      ePbYGD97rr+gMj//vj1sbDIXVKbE1ccFDUCu0rJl6zYMhrmYciETmztxSzH3V/HkwWdwxpXU
+      y8T5Q0gLebjppXA5pivlcoUUTlwE/H/xPFxpTK8RcAAAAABJRU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='192' name='Kerusakan Rumah - Gempa' width='192'>
+      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
+      zs4bAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='192' name='Korban - Gempa' width='192'>
+      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
+      RBdOAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='192' name='Line Korban Luka' width='192'>
+      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
+      x7BrggEgqf0/CG6fkxiABPEAAAAASUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='Total Kejadian - Gempa' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='Total Kejadian Gempa by Year' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>

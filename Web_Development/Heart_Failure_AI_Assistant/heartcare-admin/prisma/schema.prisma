@@ -1,0 +1,37 @@
+// prisma/schema.prisma
+// HeartCare Admin Panel — Prisma Schema
+// Database: MySQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Document {
+  id          String         @id @default(uuid())
+  title       String         @db.VarChar(255)
+  filename    String         @db.VarChar(255)
+  fileSize    Int            // Size in bytes
+  mimeType    String         @db.VarChar(100)
+  storagePath String         @db.VarChar(500) // Server path or cloud URL
+  uploadDate  DateTime       @default(now())
+  status      DocumentStatus @default(PENDING)
+  chunksCount Int?           // Set after AI processing
+  vectorCount Int?           // Set after AI processing
+  errorMsg    String?        @db.Text // Error details if status=FAILED
+
+  @@map("documents")
+  @@index([status])
+  @@index([uploadDate])
+}
+
+enum DocumentStatus {
+  PENDING     // Uploaded, waiting for AI processing
+  PROCESSING  // AI pipeline is running
+  INDEXED     // Successfully vectorized and stored in Pinecone
+  FAILED      // Processing failed
+}

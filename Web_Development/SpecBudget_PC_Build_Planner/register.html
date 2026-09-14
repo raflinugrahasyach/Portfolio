@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your free SpecBudget account to start planning your perfect PC build.">
+  <title>Register – SpecBudget</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Spec<span>Budget</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="btn-nav active">Register</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="auth-page">
+    <div class="auth-card">
+
+      <a href="index.html" class="auth-logo-link">
+        <span class="auth-logo">Spec<span>Budget</span></span>
+      </a>
+
+      <h1 class="auth-heading">Create Account</h1>
+      <p class="auth-sub">Join free and start planning your perfect PC build.</p>
+
+      <!-- Flash message area for success / error feedback -->
+      <div class="flash-msg" id="flashMsg" role="alert"></div>
+
+      <form id="registerForm" novalidate>
+
+        <div class="form-group">
+          <label for="regEmail">Email Address</label>
+          <input
+            type="email"
+            id="regEmail"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+          >
+          <span class="field-error" id="regEmailErr"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="regName">Full Name</label>
+          <input
+            type="text"
+            id="regName"
+            name="fullName"
+            placeholder="Ahmad Zulkifli"
+            autocomplete="name"
+          >
+          <span class="field-error" id="regNameErr"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="regPass">Password</label>
+          <input
+            type="password"
+            id="regPass"
+            name="password"
+            placeholder="Min 8 chars, 1 uppercase, 1 number, 1 symbol"
+            autocomplete="new-password"
+          >
+          <span class="field-error" id="regPassErr"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="regConfirm">Confirm Password</label>
+          <input
+            type="password"
+            id="regConfirm"
+            name="confirm"
+            placeholder="Re-enter your password"
+            autocomplete="new-password"
+          >
+          <span class="field-error" id="regConfirmErr"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" id="registerBtn">
+          Create My Account →
+        </button>
+
+      </form>
+
+      <p class="auth-alt">
+        Already have an account? <a href="login.html">Sign in here</a>
+      </p>
+
+    </div>
+  </main>
+
+  <script>
+    // -- regex patterns --
+    var emailPattern = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/
+    var namePattern  = /^[a-zA-Z\s'-]{2,60}$/
+    var passPattern  = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/
+
+    // show error under a field
+    function showErr(fieldId, msg) {
+      var errSpan = document.getElementById(fieldId + 'Err')
+      var field   = document.getElementById(fieldId)
+      if (errSpan) errSpan.textContent = msg
+      if (field) field.classList.add('input-invalid')
+    }
+
+    // remove error state
+    function clearErr(fieldId) {
+      var errSpan = document.getElementById(fieldId + 'Err')
+      var field   = document.getElementById(fieldId)
+      if (errSpan) errSpan.textContent = ''
+      if (field) {
+        field.classList.remove('input-invalid')
+        if (field.value.trim()) field.classList.add('input-valid')
+      }
+    }
+
+    // check email format
+    function checkEmail(val) {
+      if (!val.trim()) return 'Email is required.'
+      if (!emailPattern.test(val)) return 'Please enter a valid email address.'
+      return ''
+    }
+
+    // check name
+    function checkName(val) {
+      if (!val.trim()) return 'Full name is required.'
+      if (!namePattern.test(val.trim())) return 'Name must be 2-60 letters only.'
+      return ''
+    }
+
+    // password rules
+    function checkPassword(val) {
+      if (!val) return 'Password is required.'
+      if (val.length < 8) return 'Password must be at least 8 characters.'
+      if (!passPattern.test(val)) return 'Needs 1 uppercase, 1 number, and 1 special character (!@#$%^&*).'
+      return ''
+    }
+
+    // confirm match
+    function checkConfirm(pass, confirm) {
+      if (!confirm) return 'Please confirm your password.'
+      if (pass !== confirm) return 'Passwords do not match.'
+      return ''
+    }
+
+    // validate whole register form
+    function validateRegisterForm(data) {
+      var ok = true
+      var emailMsg = checkEmail(data.email)
+      if (emailMsg) { showErr('regEmail', emailMsg); ok = false } else clearErr('regEmail')
+      var nameMsg = checkName(data.fullName)
+      if (nameMsg) { showErr('regName', nameMsg); ok = false } else clearErr('regName')
+      var passMsg = checkPassword(data.password)
+      if (passMsg) { showErr('regPass', passMsg); ok = false } else clearErr('regPass')
+      var confMsg = checkConfirm(data.password, data.confirm)
+      if (confMsg) { showErr('regConfirm', confMsg); ok = false } else clearErr('regConfirm')
+      return ok
+    }
+
+    // live blur validation for register fields
+    function attachLiveValidation() {
+      var fields = ['regEmail', 'regName', 'regPass', 'regConfirm']
+      fields.forEach(function(id) {
+        var el = document.getElementById(id)
+        if (!el) return
+        el.addEventListener('blur', function() {
+          var msg = ''
+          if (id === 'regEmail') msg = checkEmail(el.value)
+          if (id === 'regName')  msg = checkName(el.value)
+          if (id === 'regPass')  msg = checkPassword(el.value)
+          if (id === 'regConfirm') {
+            var p = document.getElementById('regPass')
+            msg = checkConfirm(p ? p.value : '', el.value)
+          }
+          if (msg) showErr(id, msg)
+          else clearErr(id)
+        })
+        // clear red border on input
+        el.addEventListener('input', function() {
+          el.classList.remove('input-invalid', 'input-valid')
+          var s = document.getElementById(id + 'Err')
+          if (s) s.textContent = ''
+        })
+      })
+    }
+
+    // -- auth helpers --
+    var USERS_KEY   = 'specbudget_users'
+    var SESSION_KEY = 'specbudget_session'
+
+    function getStoredUsers() {
+      try { return JSON.parse(localStorage.getItem(USERS_KEY)) || [] }
+      catch(e) { return [] }
+    }
+
+    function saveUsers(list) {
+      localStorage.setItem(USERS_KEY, JSON.stringify(list))
+    }
+
+    function showFlash(el, msg, type) {
+      if (!el) return
+      el.textContent = msg
+      el.className = 'flash-msg show ' + type
+    }
+
+    // -- page init --
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open')
+    })
+
+    attachLiveValidation()
+
+    var regForm  = document.getElementById('registerForm')
+    var flashMsg = document.getElementById('flashMsg')
+
+    regForm.addEventListener('submit', function(evt) {
+      evt.preventDefault()
+      var data = {
+        email:    document.getElementById('regEmail').value.trim(),
+        fullName: document.getElementById('regName').value.trim(),
+        password: document.getElementById('regPass').value,
+        confirm:  document.getElementById('regConfirm').value
+      }
+      if (!validateRegisterForm(data)) return
+
+      var users = getStoredUsers()
+      var taken = users.some(function(u) {
+        return u.email.toLowerCase() === data.email.toLowerCase()
+      })
+      if (taken) {
+        showFlash(flashMsg, 'This email is already registered. Please log in.', 'error')
+        showErr('regEmail', 'Email already in use.')
+        return
+      }
+
+      // save new user
+      users.push({
+        id: Date.now(),
+        email: data.email.toLowerCase(),
+        fullName: data.fullName,
+        password: data.password,
+        createdAt: new Date().toISOString()
+      })
+      saveUsers(users)
+      showFlash(flashMsg, 'Account created! Redirecting to login...', 'success')
+      setTimeout(function() { window.location.href = 'login.html' }, 1800)
+    })
+  </script>
+</body>
+</html>
