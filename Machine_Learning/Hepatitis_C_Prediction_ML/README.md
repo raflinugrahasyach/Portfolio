@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Hepatitis C Progression Prediction with Machine Learning
 
@@ -31,4 +31,5 @@ Hepatitis_C_Prediction_ML/
 ├── HepatitisCdata_1.csv
 ├── developer_Prediksi_Hepatitis_C.ipynb
 ```
+
 

@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Interactive Data Dashboard with R Shiny
 
@@ -36,3 +36,4 @@ Interactive_Dashboard_RShiny/
 ├── Publish_tesdata_Dashboard.R
 ├── tesdata_Dashboard.txt
 ```
+

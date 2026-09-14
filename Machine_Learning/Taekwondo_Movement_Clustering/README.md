@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Taekwondo POOMSAE Movement Clustering Analysis
 
@@ -31,3 +31,4 @@ Taekwondo_Movement_Clustering/
 ├── DAFTAR ATLET 2025.csv
 ├── DAFTAR ATLET 2025.xlsx
 ```
+

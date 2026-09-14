@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Tourism Destination Recommendation System
 
@@ -33,3 +33,4 @@ Tourism_Recommendation_System/
 ├── scraper.py
 ├── temp_query.txt
 ```
+

@@ -1,4 +1,4 @@
-![Preview](preview.png)
+![Preview](./preview.png)
 
 # Natural Disaster Data Visualization (Tableau)
 
@@ -37,3 +37,4 @@ Disaster_Data_Visualization_Tableau/
 ├── Jumlah Kejadian Bencana Alam Menurut Kabupaten_Kota di Provinsi Banten, 2021.xlsx
 ├── Jumlah Kejadian Bencana Alam Menurut Kabupaten_Kota di Provinsi Banten, 2022.xlsx
 ```
+

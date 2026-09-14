@@ -1,4 +1,4 @@
-![Preview](preview.png)
+![Preview](./preview.png)
 
 # Social Network Analysis of Twitter / X Discourse
 
@@ -31,3 +31,4 @@ Social_Network_Analysis_Twitter/
 ├── Social_Network_Analysis.ipynb
 
 ```
+

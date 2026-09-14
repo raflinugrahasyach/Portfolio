@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Rural Poverty Classification using Support Vector Machine
 
@@ -37,3 +37,4 @@ Poverty_Classification_SVM/
 ├── php.txt
 ├── SVM_Klasifikasi_Penduduk_Desa_Taraju.ipynb
 ```
+

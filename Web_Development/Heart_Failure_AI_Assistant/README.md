@@ -1,4 +1,4 @@
-![Preview](preview.png)
+![Preview](./preview.png)
 
 # Heart Failure Medical Chatbot (NLP-Based)
 
@@ -30,3 +30,4 @@ Heart_Failure_Chatbot_NLP/
 ├── Heart_Failure_Chatbot.ipynb
 ├── HANDOVER.md
 ```
+

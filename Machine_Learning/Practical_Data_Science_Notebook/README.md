@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Practical Data Science: End-to-End Workflow
 
@@ -30,3 +30,4 @@ Practical_Data_Science_Notebook/
 ├── Practical_DS_Workflow.ipynb
 
 ```
+

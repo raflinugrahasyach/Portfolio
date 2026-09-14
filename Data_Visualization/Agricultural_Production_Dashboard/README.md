@@ -1,4 +1,4 @@
-![Preview](preview.png)
+![Preview](./preview.png)
 
 # Agricultural Production Analytics Interface (Tableau)
 
@@ -37,3 +37,4 @@ Agricultural_Production_Dashboard/
 ├── Database_Panen_Clean.xlsx
 ├── data_cleaning.py
 ```
+

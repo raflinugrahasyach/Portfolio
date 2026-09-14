@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Image Classification with ResNet50 Transfer Learning
 
@@ -36,3 +36,4 @@ Image_Classification_ResNet50/
 ├── ResNet_Fix_(1).ipynb
 ├── ResNet_Fix_2.ipynb
 ```
+

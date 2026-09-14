@@ -1,4 +1,4 @@
-![Preview](preview.png)
+![Preview](./preview.png)
 
 # Wildfire Prediction in Sumatra: DWD vs Random Forest (R)
 
@@ -37,3 +37,4 @@ Wildfire_Prediction_DWD_RF/
 ├── distribusi_data_awal.png
 ├── hasil_evaluasi_dwd_rbf_aslt.csv
 ```
+

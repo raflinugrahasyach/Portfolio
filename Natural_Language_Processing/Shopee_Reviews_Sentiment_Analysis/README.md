@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Shopee Product Review Sentiment Analysis
 
@@ -30,4 +30,5 @@ Shopee_Review_Sentiment_Analysis/
 ├── Shopee_Sentiment_Analysis.ipynb
 ├── developer_Sentimen_Shopee.ipynb
 ```
+
 

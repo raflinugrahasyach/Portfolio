@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Ticket Revenue Time-Series Forecasting
 
@@ -33,3 +33,4 @@ Ticket_Revenue_Forecasting/
 ├── localhost_8501_.png
 ├── Pendapatan keraton kasepuhan cirebon_Tiket 2024-11-07T02_03_26.906Z_baru.xlsx
 ```
+

@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Predictive Regression with Random Forest Ensemble
 
@@ -34,4 +34,5 @@ Regression_RandomForest_Prediction/
 ├── Rf.m4a
 ├── rfregression-agbmangrove.ipynb
 ```
+
 

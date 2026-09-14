@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Electric Car Sentiment Analysis
 
@@ -19,3 +19,4 @@ Dataset telah melalui proses *scrambling* dan anonimisasi untuk menjaga privasi,
 
 ## 📈 Key Results & Metrics
 - Accuracy: See notebook for detailed results
+

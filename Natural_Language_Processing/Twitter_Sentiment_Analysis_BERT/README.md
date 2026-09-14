@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Twitter / X Sentiment Analysis with BERT Fine-Tuning
 
@@ -34,4 +34,5 @@ Twitter_Sentiment_Analysis_BERT/
 ├── data_final_with_predictions.csv
 ├── update_5_BERT_Sentimen_X.ipynb
 ```
+
 

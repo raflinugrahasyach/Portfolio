@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Multiple Linear Regression Interactive App (Streamlit)
 
@@ -32,3 +32,4 @@ Multiple_Linear_Regression_App/
 ├── Data_Malang_Lumajang.xlsx
 ├── gpt_app.py
 ```
+

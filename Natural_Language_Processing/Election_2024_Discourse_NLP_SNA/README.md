@@ -1,4 +1,4 @@
-![Preview](preview.png)
+![Preview](./preview.jpg)
 
 # 2024 Indonesian Election NLP & Sentiment Analysis
 
@@ -30,3 +30,4 @@ Election_2024_NLP_Analysis/
 ├── RM1_6_2_2025.ipynb
 
 ```
+

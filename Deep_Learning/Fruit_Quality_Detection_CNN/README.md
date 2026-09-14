@@ -1,4 +1,4 @@
-![Preview](preview.png)
+![Preview](./preview.png)
 
 # Fruit Quality Monitoring with Real-Time CNN Detection
 
@@ -36,3 +36,4 @@ Fruit_Quality_Detection_CNN/
 ├── f11c322f-823e-48a1-a148-ceda60c37a1d_1769082223.webp
 ├── f6e84e95-1f20-47cf-87f0-c013d4299015_1769082224.webp
 ```
+

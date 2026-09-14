@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # SpecBudget - Interactive PC Build Planner & Budget Calculator
 
@@ -13,3 +13,4 @@ A responsive client-side web application designed to help PC builders customize 
 ## Tech Stack
 - **Frontend:** HTML5, CSS3 (Modern Flexbox/Grid), Vanilla JavaScript (ES6+)
 - **Assets:** Custom SVG component icons
+

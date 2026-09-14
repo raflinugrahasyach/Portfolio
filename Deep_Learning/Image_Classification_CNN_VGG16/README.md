@@ -1,4 +1,4 @@
-![Preview](preview.png)
+![Preview](./preview.png)
 
 # Image Classification using CNN & VGG16 Transfer Learning
 
@@ -30,3 +30,4 @@ Image_Classification_CNN_VGG16/
 ├── CNN_VGG16_Classification.ipynb
 ├── developer-research_project-cnn-vgg.ipynb
 ```
+

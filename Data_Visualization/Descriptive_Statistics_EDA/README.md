@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Descriptive Statistics & Exploratory Data Analysis Tutorial
 
@@ -36,3 +36,4 @@ Descriptive_Statistics_EDA/
 ├── test_run.py
 ├── Tutorial_Descriptive_Statistics - Copy.ipynb
 ```
+

@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Food Image Classification with CNN & Gradio Interface
 
@@ -30,3 +30,4 @@ Food_Image_Classification_Gradio/
 ├── Food_Classification_Gradio.ipynb
 ├── aplikasi klasifikasi makanan.ipynb
 ```
+

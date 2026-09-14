@@ -1,4 +1,4 @@
-![Preview](preview.png)
+
 
 # Student Satisfaction Classification with IndoBERT
 
@@ -37,3 +37,4 @@ Student_Satisfaction_IndoBERT/
 ├── confusion_matrix (2).png
 ├── dataset_kepuasan_clean.csv
 ```
+

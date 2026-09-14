@@ -1,4 +1,4 @@
-![Preview](preview.png)
+![Preview](./preview.png)
 
 # Hybrid Movie & Paper Recommendation System
 
@@ -37,3 +37,4 @@ Hybrid_Movie_Recommendation_System/
 ├── patch_cell8.py
 ├── tmdb_5000_credits.csv
 ```
+
