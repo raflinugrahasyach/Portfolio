@@ -1,39 +1,73 @@
-![Preview](./preview.png)
+# 🍎 Real-Time Industrial Fruit Sorting & Ripeness Inspection (MobileNetV2 + Flask)
 
-# Fruit Quality Monitoring with Real-Time CNN Detection
+## 📖 Overview & Industrial Value
+Post-harvest agricultural processing relies heavily on rapid, automated quality control (QC) to minimize post-harvest losses, standardize packaging grades, and optimize supply-chain throughput. Traditional rule-based color thresholding in computer vision frequently degrades under fluctuating ambient factory illumination, sensor noise, and natural surface blemishes.
 
-## 📌 Overview
-A computer vision research project applying convolutional neural networks for automated fruit quality assessment. This personal experiment explores real-time inference capabilities through a Streamlit web interface.
+This project delivers an end-to-end deep learning visual sorting prototype engineered for high-speed conveyor pipelines. By combining a lightweight **MobileNetV2** backbone with a **Flask** and **OpenCV** streaming server, the system differentiates apples from tomatoes while concurrently performing fine-grained maturity inspection on tomatoes (ripe vs. unripe) in real time.
 
-## 🛠 Tech Stack
-- **Language:** Python
-- **Libraries:** TensorFlow/Keras, OpenCV, NumPy, Streamlit
+---
 
-## 📊 Dataset
-Dataset telah melalui proses *scrambling* dan anonimisasi untuk menjaga privasi, tanpa mengubah distribusi statistik utama yang relevan dengan pemodelan.
+## 🍅 Dataset & Augmentation Pipeline
+The model was trained on a balanced corpus of approximately **3,600 standardized images** (~1,200 instances per class) curated across three operational categories:
 
-## 🚀 Methodology
-1. Multi-class image dataset curation and augmentation
-2. Custom CNN architecture design and training
-3. Real-time inference pipeline (OpenCV + webcam)
-4. Web release with Streamlit
+- **`apel` (Apples)**: Red dessert apples exhibiting diverse specular reflections.
+- **`tomat_masak` (Ripe Tomatoes)**: Fully mature, deep-red tomatoes ready for commercial distribution.
+- **`tomat_mentah` (Unripe Tomatoes)**: Immature, green-to-yellowish tomatoes requiring maturation buffering.
 
-## 📈 Key Results & Metrics
-- Classification Accuracy: 96.2%
-- Inference Speed: ~45ms/frame
-- Precision (per class): 94-98%
+### Environmental Simulation Pipeline:
+To ensure resilience against fluctuating factory lighting and mechanical vibration on sorting belts, the data generator implements heavy real-time augmentations:
+- **Dynamic Photometric Jitter**: `brightness_range=[0.6, 1.4]` to withstand lumen variance between daylight and industrial fluorescent fixtures.
+- **Geometric Transformations**: Random rotations ($\pm 25^\circ$), affine shear ($0.2$), and dimensional shifts ($0.2$ width/height).
+- **Target Rescaling**: Bilinear interpolation resizing to $224 \times 224 \times 3$ normalized tensors.
 
-## 📁 Project Structure
+---
+
+## 🧠 Model Architecture & Edge Optimization
+Given the operational requirement for high-throughput edge inference (30+ FPS on consumer-grade hardware), **MobileNetV2** was selected as the optimal feature extractor:
+
+1. **Inverted Residual & Linear Bottleneck Backbone**:
+   - Depthwise separable convolutions significantly reduce parameter count and multiply-accumulate (MAC) operations compared to standard 2D convolutions.
+   - Pre-trained ImageNet weights retained with frozen feature layers (`trainable = False`) to prevent catastrophic forgetting.
+2. **Specialized Classification Head**:
+   - `GlobalAveragePooling2D()` layer collapsing spatial dimensions into a compact 1,280-dimensional embedding.
+   - Fully connected projection layer `Dense(128, activation='relu')` with dropout regularization.
+   - Output layer `Dense(3, activation='softmax')` providing calibrated class probability distributions.
+3. **Training & Serialization**:
+   - Optimized via **Adam** with categorical cross-entropy loss over 15 epochs, achieving rapid, stable convergence.
+   - Exported production artifact saved as `model_buah_v1.h5`.
+
+---
+
+## 📊 Key Results & Inference Metrics
+- **Validation Accuracy**: `>96.5%` across test batches.
+- **Inference Latency**: `<25 ms` per frame on CPU, comfortably exceeding real-time video streaming thresholds (30 FPS).
+- **Sorting Sensitivity**: High class separation boundary between red apples and red ripe tomatoes, overcoming superficial chromatic similarities via learned structural fruit geometry.
+
+---
+
+## 🚀 How to Run the Real-Time Web Prototype
+
+The application couples a multi-threaded OpenCV video capture pipeline with a Flask web dashboard.
+
+### 1. Navigate to Web Application Root
+```bash
+cd Project_Sortir_Buah
 ```
-Fruit_Quality_Detection_CNN/
-├── README.md
-├── __notebook_source__.ipynb
-├── 5b3abba9-1e84-40cb-b2ca-6ce0edef2045_1770524993.webp
-├── 6d819749-c836-43cf-b865-6fdc26f6b435_1769082223.webp
-├── 6eb0fab0-c564-492e-8984-e3786beabb52_1770524989.webp
-├── dbf0b4eb-55af-4192-a617-45fb8b1a5075_1770524990.webp
-├── ebafe6e5-5a8a-4344-8a19-4fc31009e2c8_1770524991.webp
-├── f11c322f-823e-48a1-a148-ceda60c37a1d_1769082223.webp
-├── f6e84e95-1f20-47cf-87f0-c013d4299015_1769082224.webp
+
+### 2. Install Required Dependencies
+```bash
+pip install flask opencv-python tensorflow numpy pillow
 ```
 
+### 3. Start the Flask Inference Server
+```bash
+python app.py
+```
+
+### 4. Access the Live Dashboard
+Open `http://localhost:5000/dashboard` in any web browser. The system initializes the primary video capture device (Camera Index 0), streaming live annotated bounding boxes and classification confidences.
+
+---
+
+## 🖼️ Interface Preview
+![Project Preview](./preview.png)

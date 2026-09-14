@@ -25,12 +25,20 @@ from sklearn.metrics import classification_report
 app = Flask(__name__)
 
 
-# Menggunakan kamus kata gaul Salsabila
-with open("_json_colloquial-indonesian-lexicon.txt") as f:
-    kamus_alay = f.read()
-# Rekonstruksi kamus_alay sebagai 'dict'
-lookp_dict = json.loads(kamus_alay)
-import re
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Load colloquial Indonesian slang lexicon
+lexicon_path = os.path.join(BASE_DIR, "colloquial_indonesian_lexicon.json")
+lookp_dict = {}
+if os.path.exists(lexicon_path):
+    try:
+        with open(lexicon_path, "r", encoding="utf-8") as f:
+            lookp_dict = json.load(f)
+    except Exception as e:
+        print(f"Warning: Failed to load slang lexicon: {e}")
+
 
 def text_cleaning(text):
 
@@ -65,32 +73,37 @@ def text_cleaning(text):
     # Remove single characters
     text = re.sub(r"\s+[a-zA-Z]\s+", ' ', text)
 
-    # Remove excess spaces
-    text = re.sub(r'\s+', ' ', text).strip()
-
-    # Remove stopwords
-    # memanfaatkan modul stopwords NLTK untuk menggunakan stopwords kustom
-    # stop_word = stopwords.words('indonesian')
-    # text = ' '.join([word for word in text.split() if word not in stop_word])
+    # Normalize slang using lexicon
+    if lookp_dict:
+        words = text.split()
+        text = ' '.join([lookp_dict.get(w, w) for w in words])
 
     return text
 
-# load model lstm
-file = open("tokenizer_lstm.pickle",'rb')
-tokenizer_lstm = pickle.load(file)
-file.close()
-model_lstm = load_model('model_lstm.h5')
+# Load LSTM tokenizer and model
+tokenizer_path = os.path.join(BASE_DIR, "tokenizer_lstm.pickle")
+model_lstm_path = os.path.join(BASE_DIR, "model_lstm.h5")
+tokenizer_lstm = None
+model_lstm = None
+if os.path.exists(tokenizer_path):
+    with open(tokenizer_path, 'rb') as f:
+        tokenizer_lstm = pickle.load(f)
+if os.path.exists(model_lstm_path):
+    model_lstm = load_model(model_lstm_path)
 
-# load model mlp
-file = open('tfidf_vectorizer_mlp.pkl', 'rb')
-vectorizer = pickle.load(file) 
-file.close()
+# Load MLP vectorizer and model
+vectorizer_path = os.path.join(BASE_DIR, "tfidf_vectorizer_mlp.pkl")
+model_mlp_path = os.path.join(BASE_DIR, "model_mlp.pkl")
+vectorizer = None
+model_mlp = None
+if os.path.exists(vectorizer_path):
+    with open(vectorizer_path, 'rb') as f:
+        vectorizer = pickle.load(f)
+if os.path.exists(model_mlp_path):
+    with open(model_mlp_path, 'rb') as f:
+        model_mlp = pickle.load(f)
 
-file = open('model_mlp.pkl', 'rb')
-model_mlp = pickle.load(file) 
-file.close()
-
-#sentiment
+# Sentiment labels mapping
 sentiment = ['negative', 'neutral', 'positive']
 
 

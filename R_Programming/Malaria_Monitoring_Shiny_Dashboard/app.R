@@ -17,8 +17,9 @@ library(dplyr)
 library(openxlsx)
 
 
-# Load data
-data <- read_excel("./datates.xlsx")
+# Load data with robust fallback
+data_path <- if (file.exists("./malaria_dataset.xlsx")) "./malaria_dataset.xlsx" else "./datates.xlsx"
+data <- read_excel(data_path)
 
 # Define UI
 

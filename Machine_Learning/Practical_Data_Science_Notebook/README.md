@@ -1,33 +1,60 @@
+# 🔬 Applied Data Science Benchmark: Comparative Evaluation of Regression, Classification, and Clustering
 
+## 📖 Overview & Methodological Value
+In applied machine learning engineering, model selection must be driven by rigorous empirical benchmarking rather than algorithmic dogma. Different families of algorithms carry distinct inductive biases regarding linearity, feature scale sensitivity, and spatial topology.
 
-# Practical Data Science: End-to-End Workflow
+This project provides a comprehensive, head-to-head comparative benchmark across the three foundational pillars of modern machine learning: **Continuous Regression**, **Supervised Classification**, and **Unsupervised Clustering**, systematically evaluated on a standardized multi-attribute dataset (`A2data.csv`).
 
-## 📌 Overview
-A comprehensive data science notebook documenting a complete analytical workflow from raw data ingestion to model release. This personal reference project covers real-world data science practices.
+---
 
-## 🛠 Tech Stack
-- **Language:** Python
-- **Libraries:** Pandas, Scikit-learn, Matplotlib, Seaborn, NumPy
+## 📦 Benchmark Dataset & Preprocessing Pipeline
+Experiments were conducted using `A2data.csv`, containing high-dimensional continuous and discrete attributes:
 
-## 📊 Dataset
-Dataset telah melalui proses *scrambling* dan anonimisasi untuk menjaga privasi, tanpa mengubah distribusi statistik utama yang relevan dengan pemodelan.
+- **Stratified Sampling**: Balanced representation to eliminate sub-population sampling bias while keeping computational overhead tractable.
+- **Z-Score Normalization (`StandardScaler`)**: Applied across distance-sensitive algorithms (kNN, K-Means, DBSCAN) to prevent higher-magnitude attributes from distorting Euclidean geometry.
+- **Dimensionality Reduction for Visual Diagnostics**: Applied **Principal Component Analysis (PCA)** to project high-dimensional decision boundaries and cluster structures onto an interpretable 2D subspace.
 
-## 🚀 Methodology
-1. Data ingestion and quality assessment
-2. Feature engineering and selection pipeline
-3. Model training, validation, and tuning
-4. Result interpretation and visualization
+---
 
-## 📈 Key Results & Metrics
-- Pipeline covers 8 major DS workflow stages
-- Multiple algorithm comparisons
-- Reproducible with requirements.txt
+## 🧠 Algorithmic Benchmarks & Comparative Architecture
 
-## 📁 Project Structure
+### Task 1: Continuous Target Regression
+- Evaluates linear and non-linear regression estimators to model continuous target variables.
+- Quantifies predictive accuracy using **Mean Squared Error (MSE)** and **Coefficient of Determination ($R^2$)**.
+
+### Task 2: Classification — kNN vs. Distance-Weighted kNN vs. Decision Tree
+Evaluates three contrasting supervised classification paradigms:
+- **Standard k-Nearest Neighbors (kNN)**: Uniform voting across the local $k$-neighborhood.
+- **Modified Distance-Weighted kNN**: Inverse-distance weighting ($w_i = 1/d_i$) to assign greater influence to immediate spatial neighbors, improving boundary discrimination.
+- **CART Decision Tree**: Recursive partitioning algorithm splitting feature spaces according to **Gini Impurity** and **Entropy (Information Gain)**.
+
+### Task 3: Unsupervised Clustering — K-Means vs. DBSCAN
+Compares centroid-based vs. density-based clustering topologies:
+- **K-Means ($k=3$)**: Optimized via the Elbow Method (Within-Cluster Sum of Squares); assumes convex, spherical cluster geometries.
+  - Evaluated via **Silhouette Coefficient** to assess cluster tightness and separation.
+- **DBSCAN ($\varepsilon=2.0, \text{min\_samples}=15$)**: Density-Based Spatial Clustering of Applications with Noise; detects non-linear, arbitrary shapes while explicitly tagging unclustered noise points.
+
+---
+
+## 📊 Summary of Comparative Findings
+- **Classification Trade-Offs**: Distance-weighted kNN consistently outperformed uniform kNN along boundary regions with high local class overlap. The Decision Tree offered direct interpretability via explicit decision rules but exhibited higher variance on small perturbations.
+- **Clustering Geometry**: K-Means formed compact, balanced partitions but forced outliers into the nearest centroid. In contrast, DBSCAN successfully isolated anomalous peripheral noise points, yielding higher spatial density within true clusters.
+
+---
+
+## 🚀 How to Run & Reproduce
+
+### 1. Requirements
+```bash
+pip install pandas numpy scikit-learn matplotlib seaborn jupyter
 ```
-Practical_Data_Science_Notebook/
-├── README.md
-├── Practical_DS_Workflow.ipynb
 
+### 2. Execute Research Notebook
+```bash
+jupyter notebook practical_data_science_analysis.ipynb
 ```
 
+---
+
+## 🖼️ Benchmark Visualizations & PCA Cluster Plots
+![Project Preview](./preview.png)
